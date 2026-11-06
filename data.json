@@ -2,9 +2,9 @@
   "jours": {
     "d01": {
       "challenge": "",
-      "gainMagasin": "",
+      "gainMagasin": "20€",
       "gainVendeur": "",
-      "magasin": "",
+      "magasin": "Herouville",
       "vendeur": ""
     },
     "d03": {
