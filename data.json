@@ -20,6 +20,13 @@
       "gainVendeur": "",
       "magasin": "Caen strasbourg",
       "vendeur": ""
+    },
+    "d04": {
+      "challenge": "Aucune idee",
+      "gainMagasin": "20€",
+      "gainVendeur": "",
+      "magasin": "Le havre centre ville",
+      "vendeur": ""
     }
   }
 }
