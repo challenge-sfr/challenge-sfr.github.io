@@ -27,6 +27,13 @@
       "gainVendeur": "",
       "magasin": "Le havre centre ville",
       "vendeur": ""
+    },
+    "d05": {
+      "challenge": "Plus fort canal",
+      "gainMagasin": "30€",
+      "gainVendeur": "30€",
+      "magasin": "Dieppe",
+      "vendeur": "Nicolas GILBERT"
     }
   }
 }
