@@ -7,7 +7,7 @@
 <title>Challenge OUEST 1</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Mountains+of+Christmas:wght@700&family=Figtree:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Playfair+Display:ital,wght@0,800;0,900;1,700&family=Figtree:wght@400;600;700&display=swap">
 <style>
 /* Mise en page : une colonne mobile, grille du mois en 7 colonnes (lun→dim) de paquets cadeaux, détail du jour en panneau bas */
 :root{
@@ -41,24 +41,23 @@ body{min-height:100%;
   display:flex;flex-direction:column;gap:22px}
 
 header{position:relative;text-align:center;padding-top:6px}
-h1{font-family:"Mountains of Christmas",var(--f-display);font-weight:700;font-size:clamp(34px,10.5vw,62px);line-height:1;margin:0;color:#d4001a;letter-spacing:.01em;
+h1{font-family:"Playfair Display",Georgia,serif;font-weight:900;font-size:clamp(30px,9vw,56px);line-height:1.05;margin:0;color:#d4001a;letter-spacing:.01em;
   text-shadow:0 1.5px 0 #fff,0 -1.5px 0 #fff,1.5px 0 0 #fff,-1.5px 0 0 #fff,1.5px 1.5px 0 #fff,-1.5px 1.5px 0 #fff,1.5px -1.5px 0 #fff,-1.5px -1.5px 0 #fff,
     0 4px 0 #8a000f,0 6px 12px rgba(10,40,90,.35)}
-.garland{display:block;width:min(100%,420px);height:auto;margin:-2px auto 0;overflow:visible;filter:drop-shadow(0 2px 2px rgba(10,40,30,.3))}
 .spk{position:absolute;width:var(--s,12px);height:var(--s,12px);pointer-events:none}
 .spk svg{width:100%;height:100%;display:block}
-.sub{font-family:"Mountains of Christmas",var(--f-display);font-weight:700;font-size:clamp(18px,5.4vw,28px);margin-top:2px;color:#fff;
+.sub{font-family:"Playfair Display",Georgia,serif;font-style:italic;font-weight:700;font-size:clamp(18px,5.4vw,28px);margin-top:2px;color:#fff;
   text-shadow:0 2px 0 #1f6b3a,0 3px 8px rgba(10,40,90,.35)}
 /* panneau givré sous les cadeaux */
 .cal{background:rgba(255,255,255,.38);-webkit-backdrop-filter:blur(9px) saturate(1.15);backdrop-filter:blur(9px) saturate(1.15);
   border:1px solid rgba(255,255,255,.7);border-radius:18px;padding:12px 8px 14px;box-shadow:0 10px 30px rgba(20,50,90,.18)}
 /* historique des gains */
-.hist{display:flex;flex-direction:column;align-items:center;gap:12px}
+.hist,.calbox{display:flex;flex-direction:column;align-items:center;gap:14px}
+.calbox .cal{width:100%}
 .histbtn{position:relative;border:2px solid #f5c842;border-radius:999px;padding:12px 22px 12px 18px;font:inherit;font-weight:700;font-size:15px;color:#fff;cursor:pointer;
   display:inline-flex;align-items:center;gap:10px;
   background:linear-gradient(180deg,#ff3b4e,#c4001a 60%,#9b0012);box-shadow:inset 0 1px 0 rgba(255,255,255,.45),0 4px 0 #6b000c,0 8px 16px rgba(20,50,90,.25)}
-.histbtn::before{content:"";position:absolute;left:14px;right:14px;top:-7px;height:10px;border-radius:10px;background:#fff;
-  -webkit-mask:radial-gradient(circle at 8px 10px,#000 6px,transparent 6.5px) 0 0/16px 10px repeat-x;mask:radial-gradient(circle at 8px 10px,#000 6px,transparent 6.5px) 0 0/16px 10px repeat-x}
+.histbtn::before{content:"";position:absolute;left:8px;right:8px;top:-6px;height:14px;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 18' preserveAspectRatio='none'%3E%3Cpath d='M0 12C1 5 6 3 14 3H186C194 3 199 5 200 12C194 11 190 12 186 13C182 16 177 16 174 13C160 11 140 12 124 12C119 17 112 17 108 12C88 11 70 12 56 13C52 15 47 15 44 12C30 11 16 12 8 13C4 14 1 13 0 12Z' fill='%23ffffff'/%3E%3Cpath d='M8 13C16 12 30 11 44 12C47 15 52 15 56 13C70 12 88 11 108 12C112 17 119 17 124 12C140 12 160 11 174 13C177 16 182 16 186 13C190 12 194 11 200 12' stroke='%23c9dcef' stroke-width='1' fill='none'/%3E%3C/svg%3E") center/100% 100% no-repeat;filter:drop-shadow(0 1px 1px rgba(20,50,90,.25))}
 .histbtn:active{transform:translateY(2px);box-shadow:inset 0 1px 0 rgba(255,255,255,.45),0 2px 0 #6b000c,0 4px 8px rgba(20,50,90,.25)}
 .histbtn:focus-visible{outline:3px solid #1f6b3a;outline-offset:3px}
 .histbtn svg{width:20px;height:20px;flex:none}
@@ -68,7 +67,7 @@ h1{font-family:"Mountains of Christmas",var(--f-display);font-weight:700;font-si
 .hitem{background:rgba(255,255,255,.82);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.9);border-radius:14px;padding:12px 14px;
   color:#22161a;box-shadow:0 4px 14px rgba(20,50,90,.12);display:flex;flex-direction:column;gap:6px;min-width:0}
 .hitem .hd{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
-.hitem .dt{font-family:"Mountains of Christmas",var(--f-display);font-weight:700;font-size:22px;color:#c4001a;line-height:1}
+.hitem .dt{font-family:"Playfair Display",Georgia,serif;font-weight:800;font-size:19px;color:#c4001a;line-height:1}
 .hitem .ch{font-size:13px;color:#5b4b4f;overflow-wrap:anywhere}
 .hitem .rows{display:flex;flex-direction:column;gap:4px}
 .hitem .row{display:flex;justify-content:space-between;gap:10px;font-size:14px}
@@ -166,7 +165,6 @@ h1{font-family:"Mountains of Christmas",var(--f-display);font-weight:700;font-si
     <span class="spk" style="left:30%;top:-4px;--s:8px"><svg viewBox="0 0 24 24"><path d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z" fill="#ff4d5e"/></svg></span>
     <span class="spk" style="right:30%;top:-2px;--s:9px"><svg viewBox="0 0 24 24"><path d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z" fill="#f5c842"/></svg></span>
     <h1>Challenge OUEST 1</h1>
-    <svg class="garland" id="garland" viewBox="0 0 320 40" aria-hidden="true"></svg>
     <div class="sub">Décembre 2026</div>
   </header>
 
@@ -176,9 +174,16 @@ h1{font-family:"Mountains of Christmas",var(--f-display);font-weight:700;font-si
     <button type="button" id="simNext" aria-label="Jour suivant">›</button>
   </div>
 
-  <section class="cal" aria-label="Calendrier de décembre 2026">
+  <section class="calbox" aria-label="Calendrier de l'Avent">
+    <button type="button" class="histbtn" id="calBtn" aria-expanded="false" aria-controls="cal">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1l2.4 6.6L21 8.5l-5.2 4.3 1.8 6.7L12 15.8l-5.6 3.7 1.8-6.7L3 8.5l6.6-.9z" fill="#f5c842" stroke="#fff6c4" stroke-width=".8"/></svg>
+      <span id="calLbl">Ouvrir le calendrier de l'Avent</span>
+      <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  <section class="cal" id="cal" hidden aria-label="Calendrier de décembre 2026">
     <div class="dow" aria-hidden="true"><span>Lun</span><span>Mar</span><span>Mer</span><span>Jeu</span><span>Ven</span><span>Sam</span></div>
     <div class="grid" id="grid"></div>
+  </section>
   </section>
 
   <section class="hist" aria-label="Historique des gains">
@@ -387,23 +392,14 @@ h1{font-family:"Mountains of Christmas",var(--f-display);font-weight:700;font-si
   fetch("data.json?v="+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.json():{};})
     .then(function(j){DATA=(j&&j.jours)||{};markWinners();renderHist();}).catch(function(){});
 
-  /* Guirlande de sapin sous le titre */
-  (function(){
-    var g=document.getElementById("garland"), o="", pts=[];
-    for(var i=0;i<=80;i++){var x=4+i*3.9, t=(x-4)/312, y=8+Math.abs(Math.sin(t*Math.PI*2))*16;pts.push([x,y]);}
-    o+='<path d="M'+pts.map(function(p){return p[0].toFixed(1)+" "+p[1].toFixed(1);}).join("L")+'" stroke="#2d5a27" stroke-width="3" fill="none"/>';
-    var greens=["#1f6b3a","#2f8a50","#14532b","#3a9a5c"];
-    pts.forEach(function(p,i){
-      for(var k=0;k<4;k++){var a=(i*47+k*90)%360*Math.PI/180, l=5+(k%2)*2;
-        o+='<path d="M'+p[0].toFixed(1)+' '+p[1].toFixed(1)+'l'+(Math.cos(a)*l).toFixed(1)+' '+(Math.sin(a)*l).toFixed(1)+'" stroke="'+greens[(i+k)%4]+'" stroke-width="1.6" stroke-linecap="round"/>';}
-    });
-    [[10,"#e2001a"],[22,"#f5c842"],[34,"#e2001a"],[46,"#f5c842"],[58,"#e2001a"],[70,"#f5c842"]].forEach(function(b){
-      var p=pts[b[0]]; o+='<circle cx="'+p[0]+'" cy="'+(p[1]+5)+'" r="3.4" fill="'+b[1]+'" stroke="#fff" stroke-opacity=".6" stroke-width=".8"/><circle cx="'+(p[0]-1)+'" cy="'+(p[1]+4)+'" r=".9" fill="#fff" opacity=".8"/>';
-    });
-    [5,16,28,40,52,64,76].forEach(function(i,n){var p=pts[i];o+='<circle cx="'+p[0]+'" cy="'+(p[1]-3)+'" r="1.6" fill="'+(n%2?"#fff6b0":"#ffd34d")+'"/>';});
-    [0,40,80].forEach(function(i){var p=pts[i];o+='<g transform="translate('+p[0]+' '+(p[1]-1)+')"><ellipse cx="-4" cy="0" rx="4.5" ry="2.6" fill="#e2001a" transform="rotate(-20 -4 0)"/><ellipse cx="4" cy="0" rx="4.5" ry="2.6" fill="#e2001a" transform="rotate(20 4 0)"/><circle r="1.8" fill="#9b0012"/></g>';});
-    g.innerHTML=o;
-  })();
+  /* Ouverture du calendrier */
+  var calBtn=document.getElementById("calBtn"), calEl=document.getElementById("cal");
+  function setCal(open){
+    calEl.hidden=!open; calBtn.setAttribute("aria-expanded",open?"true":"false");
+    document.getElementById("calLbl").textContent=open?"Fermer le calendrier":"Ouvrir le calendrier de l'Avent";
+  }
+  calBtn.addEventListener("click",function(){setCal(calEl.hidden);});
+  if(sim||preview) setCal(true);
 
   /* Historique des gains */
   var histBtn=document.getElementById("histBtn"), hlist=document.getElementById("hlist");
