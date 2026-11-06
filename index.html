@@ -25,6 +25,12 @@
 
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.45}
+/* Fond : paysage enneigé (fond.jpg) collé en bas de la page, ciel prolongé au-dessus */
+html{background:#73a6dc}
+body{background:#73a6dc url("fond.jpg") center bottom / 100% auto no-repeat;min-height:100%}
+.scene-space{height:111vw;flex:none}
+.dow span{color:#fff !important;text-shadow:0 1px 2px rgba(16,36,72,.6)}
+.foot{color:#fff !important;text-shadow:0 1px 2px rgba(16,36,72,.6)}
 .wrap{max-width:560px;margin:0 auto;padding-block:20px 48px;
   padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
   display:flex;flex-direction:column;gap:22px}
@@ -54,7 +60,7 @@ h1{font-family:var(--f-display);font-weight:900;font-size:48px;line-height:.95;m
 /* ---------- Cadeaux en relief ---------- */
 .day.orn{background:none}
 .day.orn svg{width:100%;height:100%;overflow:visible;display:block}
-.day.orn .num{font-family:var(--f-display);font-weight:900;font-size:14px;fill:var(--ink)}
+.day.orn .num{font-family:var(--f-display);font-weight:900;font-size:14px;fill:#fff;paint-order:stroke;stroke:rgba(16,36,72,.65);stroke-width:3px;stroke-linejoin:round}
 
 .day.today{animation:bob 1.8s ease-in-out infinite}
 .day.today{outline:3px solid var(--gold);outline-offset:3px;border-radius:12px}
@@ -129,6 +135,7 @@ h1{font-family:var(--f-display);font-weight:900;font-size:48px;line-height:.95;m
   </section>
 
   <div class="foot" id="foot"></div>
+  <div class="scene-space" aria-hidden="true"></div>
 </div>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
