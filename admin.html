@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Administration · Challenge OUEST 1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Figtree:wght@400;600;700&display=swap">
+<style>
+/* Mise en page : une colonne mobile, grille du mois en 7 colonnes (lun→dim) de paquets cadeaux, détail du jour en panneau bas */
+:root{
+  --bg:#f7f3f2; --surface:#ffffff; --ink:#22161a; --muted:#6f5f63;
+  --red:#e2001a; --gold:#b8861f; --blue:#1d5fd6; --line:#e7dcdc; --off:#efe8e8; --off-ink:#a39598;
+  --f-display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;
+  --f-body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#170e10; --surface:#22171a; --ink:#f5ecec; --muted:#b8a7aa;
+  --red:#ff3348; --gold:#e3b257; --blue:#6aa3ff; --line:#3a2a2e; --off:#221719; --off-ink:#6f5e62; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#170e10; --surface:#22171a; --ink:#f5ecec; --muted:#b8a7aa;
+  --red:#ff3348; --gold:#e3b257; --blue:#6aa3ff; --line:#3a2a2e; --off:#221719; --off-ink:#6f5e62; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.45}
+.wrap{max-width:560px;margin:0 auto;padding-block:20px 48px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  display:flex;flex-direction:column;gap:22px}
+
+header{background:linear-gradient(160deg,#ff2a3d,#c4001a 70%);color:#fff;border-radius:18px;padding:22px 18px 20px;position:relative;overflow:hidden;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 8px 20px rgba(160,0,20,.25)}
+header::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(circle,rgba(255,255,255,.55) 0 1.5px,transparent 2px) 0 0/22px 22px,
+             radial-gradient(circle,rgba(255,255,255,.3) 0 1px,transparent 1.5px) 11px 9px/22px 22px;
+  -webkit-mask:linear-gradient(90deg,transparent 30%,#000);mask:linear-gradient(90deg,transparent 30%,#000)}
+h1{font-family:var(--f-display);font-weight:900;font-size:48px;line-height:.95;margin:0;text-transform:uppercase;text-wrap:balance;position:relative}
+.sub{font-family:var(--f-display);font-weight:700;font-size:24px;letter-spacing:.04em;text-transform:uppercase;margin-top:4px;opacity:.92;position:relative}
+
+.cal{display:flex;flex-direction:column;gap:6px}
+.dow,.grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px}
+.grid{row-gap:18px;padding-top:8px}
+.dow span{text-align:center;font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.blank{aspect-ratio:3/4}
+
+/* administration */
+.adminbtn{align-self:center;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:10px 18px;font:inherit;font-weight:700;cursor:pointer}
+.adminbtn:focus-visible,.arow:focus-visible,.field input:focus-visible,.field textarea:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.admin{display:flex;flex-direction:column;gap:10px}
+.admin h2{font-family:var(--f-display);font-weight:900;font-size:26px;margin:0;text-transform:uppercase}
+.admin .hint{font-size:13px;color:var(--muted);margin:0}
+.alist{display:flex;flex-direction:column;gap:6px}
+.arow{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px;font:inherit;color:var(--ink);cursor:pointer}
+.arow .sw{width:12px;height:28px;border-radius:3px;flex:none}
+.arow .sw.week{background:linear-gradient(155deg,#ff3b4e,#c2001a)}
+.arow .sw.sat{background:linear-gradient(135deg,#fff7c4,#ffd84a 30%,#c78a0e 60%,#ffe27a)}
+.arow .lbl{flex:1;min-width:0}
+.arow .lbl b{display:block}
+.arow .lbl small{color:var(--muted);display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pill{font-size:11px;font-weight:700;border-radius:999px;padding:3px 8px;white-space:nowrap;flex:none}
+.pill.ok{background:color-mix(in srgb,#1f8a3a 18%,transparent);color:#1f8a3a}
+.pill.todo{background:var(--off);color:var(--muted);text-decoration:line-through;text-decoration-thickness:1px}
+.field{display:flex;flex-direction:column;gap:4px;margin-bottom:10px}
+.field label{font-size:13px;font-weight:700}
+.field input,.field textarea{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px;width:100%}
+.field textarea{min-height:96px;resize:vertical}
+.msg{font-size:13px;margin-top:8px;min-height:1em}
+.msg.err{color:var(--red)}
+.btns{display:flex;gap:8px}
+.btns .close{margin-top:10px}
+.close.alt{background:var(--off);color:var(--ink)}
+.pair{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:0 10px}
+.pair .field{min-width:0}
+.pills{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:4px;max-width:46%}
+.ghbox{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px}
+.ghbox .btns .close{margin-top:0;padding:11px}
+.ghbox .hint{margin-top:8px}
+.wrap.adm{gap:16px}
+.back{align-self:flex-start;color:var(--red);font-weight:700;text-decoration:none;font-size:14px}
+.back:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.defi .k{font-size:11px}
+/* panneau détail */
+.scrim{position:fixed;inset:0;background:rgba(20,8,10,.5);z-index:20}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:21;background:var(--surface);border-radius:20px 20px 0 0;
+  padding-top:22px;padding-bottom:calc(24px + env(safe-area-inset-bottom,0px));
+  padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px));
+  max-width:560px;margin:0 auto;animation:up .25s ease-out}
+@keyframes up{from{transform:translateY(100%)}}
+@media (prefers-reduced-motion:reduce){.sheet{animation:none}}
+.sheet .d{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.sheet .big{font-family:var(--f-display);font-weight:900;font-size:40px;line-height:1;margin:6px 0 14px;text-transform:uppercase}
+.prizes{display:flex;flex-direction:column;gap:8px}
+.prize{display:flex;justify-content:space-between;align-items:center;gap:12px;border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.prize .who{font-weight:600}
+.prize .amt{font-family:var(--f-display);font-weight:900;font-size:28px;line-height:1.05;color:var(--red);text-align:right;overflow-wrap:anywhere;min-width:0}
+.prize.s .amt{color:var(--gold)}
+.sheet p{color:var(--muted);margin:12px 0 0}
+.close{margin-top:18px;width:100%;border:0;border-radius:12px;padding:14px;font:inherit;font-weight:700;background:var(--red);color:#fff;cursor:pointer}
+.close:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.lockmsg{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;padding:10px 0}
+.lockmsg svg{width:44px;height:44px;color:var(--red)}
+</style>
+</head>
+<body>
+<div class="wrap adm">
+  <a class="back" href="./">← Retour au calendrier</a>
+  <header>
+    <h1>Administration</h1>
+    <div class="sub">Challenge OUEST 1 · Décembre 2026</div>
+  </header>
+
+  <section class="admin" aria-label="Administration">
+    <p class="hint">Touchez un jour pour écrire son challenge, ses gains et ses gagnants. Chaque enregistrement est publié sur le site et visible par tous d'ici 1 à 2 minutes.</p>
+    <div class="ghbox">
+      <div class="field"><label for="f-token">Clé GitHub</label>
+        <input id="f-token" type="password" autocomplete="off" placeholder="github_pat_…"></div>
+      <div class="btns"><button type="button" class="close" id="tokSave">Mémoriser sur cet appareil</button><button type="button" class="close alt" id="tokForget">Oublier</button></div>
+      <p class="hint" id="ghInfo"></p>
+    </div>
+    <p class="hint" id="adminNote" role="status"></p>
+    <div class="alist" id="alist"></div>
+  </section>
+</div>
+
+<div class="scrim" id="scrim" hidden></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle" hidden></div>
+
+<script>
+(function(){
+  var DOWS=["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"];
+  function dowOf(d){return (2+(d-1))%7;} // 1er décembre 2026 = mardi ; 0 = dimanche
+  function typeOf(d){ if(d===25||dowOf(d)===0) return "none"; return dowOf(d)===6?"sat":"week"; }
+  function esc(x){return String(x==null?"":x).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
+  function pad(d){return (d<10?"0":"")+d;}
+  function filled(v){return !!(v||"").trim();}
+  var DATA={};
+  function info(d){return DATA["d"+pad(d)]||{};}
+
+  /* Dépôt GitHub : détecté depuis l'adresse github.io.
+     Si le site est sur un nom de domaine personnalisé, remplissez owner et repo à la main. */
+  var GITHUB={owner:"",repo:"",branch:"main",path:"data.json"};
+  (function(){
+    var h=location.hostname;
+    if(!GITHUB.owner&&/\.github\.io$/.test(h)){
+      GITHUB.owner=h.split(".")[0];
+      var seg=location.pathname.split("/")[1]||"";
+      GITHUB.repo= seg&&seg.indexOf(".")<0 ? seg : h;
+    }
+  })();
+  var TOKEN="";
+  try{TOKEN=localStorage.getItem("ouest1_token")||"";}catch(e){}
+  document.getElementById("f-token").value=TOKEN;
+
+  var note=document.getElementById("adminNote");
+  var sheet=document.getElementById("sheet"), scrim=document.getElementById("scrim"), lastBtn=null;
+  function showSheet(html,focusId){
+    sheet.innerHTML=html; sheet.hidden=false; scrim.hidden=false;
+    var c=document.getElementById(focusId||"closeBtn"); if(c) c.focus();
+    var cb=document.getElementById("closeBtn"); if(cb) cb.addEventListener("click",closeSheet);
+  }
+  function closeSheet(){sheet.hidden=true;scrim.hidden=true;if(lastBtn&&document.contains(lastBtn))lastBtn.focus();}
+  scrim.addEventListener("click",closeSheet);
+  document.addEventListener("keydown",function(e){if(e.key==="Escape"&&!sheet.hidden)closeSheet();});
+
+  /* ---------- GitHub ---------- */
+  function b64enc(str){return btoa(unescape(encodeURIComponent(str)));}
+  function b64dec(str){return decodeURIComponent(escape(atob(str.replace(/\s/g,""))));}
+  function ghUrl(){return "https://api.github.com/repos/"+GITHUB.owner+"/"+GITHUB.repo+"/contents/"+GITHUB.path;}
+  function ghHeaders(){return {"Authorization":"Bearer "+TOKEN,"Accept":"application/vnd.github+json"};}
+  function ready(){
+    if(!TOKEN) return {msg:"Ajoutez d'abord votre clé GitHub dans le cadre « Clé GitHub »."};
+    if(!GITHUB.owner||!GITHUB.repo) return {msg:"Dépôt GitHub introuvable. Ouvrez cette page depuis l'adresse github.io du site."};
+    return null;
+  }
+  /* Lit data.json directement dans le dépôt (toujours la dernière version) */
+  function readRemote(){
+    return fetch(ghUrl()+"?ref="+GITHUB.branch+"&t="+Date.now(),{headers:ghHeaders(),cache:"no-store"}).then(function(r){
+      if(r.status===401||r.status===403) throw {msg:"La clé GitHub est refusée. Vérifiez qu'elle n'a pas expiré et qu'elle a le droit « Contents : Read and write » sur ce dépôt."};
+      if(r.status===404) return {sha:null,jours:{}};
+      if(!r.ok) throw {msg:"GitHub ne répond pas correctement ("+r.status+"). Réessayez dans un instant."};
+      return r.json().then(function(j){
+        var parsed={}; try{parsed=JSON.parse(b64dec(j.content||""));}catch(e){}
+        return {sha:j.sha,jours:(parsed&&parsed.jours)||{}};
+      });
+    });
+  }
+  /* Enregistre un seul jour, fusionné avec la version la plus récente du fichier */
+  function publishDay(key,obj,label){
+    var no=ready(); if(no) return Promise.reject(no);
+    function attempt(retry){
+      return readRemote().then(function(cur){
+        cur.jours[key]=obj;
+        var payload={message:label,content:b64enc(JSON.stringify({jours:cur.jours},null,2)),branch:GITHUB.branch};
+        if(cur.sha) payload.sha=cur.sha;
+        return fetch(ghUrl(),{method:"PUT",headers:ghHeaders(),body:JSON.stringify(payload)}).then(function(r){
+          if((r.status===409||r.status===422)&&retry) return attempt(false);
+          if(r.status===401||r.status===403) throw {msg:"La clé GitHub est refusée. Vérifiez qu'elle a le droit « Contents : Read and write » sur ce dépôt."};
+          if(r.status===404) throw {msg:"Dépôt introuvable avec cette clé. Vérifiez que la clé donne accès au dépôt "+GITHUB.owner+"/"+GITHUB.repo+"."};
+          if(!r.ok) throw {msg:"La publication a échoué ("+r.status+"). Réessayez dans un instant."};
+          return cur.jours;
+        });
+      });
+    }
+    return attempt(true);
+  }
+  function load(){
+    var p= ready() ? fetch("data.json?v="+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.json():{};}).then(function(j){return (j&&j.jours)||{};})
+                   : readRemote().then(function(c){return c.jours;});
+    p.then(function(j){DATA=j;render();}).catch(function(err){note.textContent=(err&&err.msg)||"Impossible de charger les données.";render();});
+  }
+
+  /* ---------- Liste des jours ---------- */
+  function render(){
+    var html="";
+    for(var d=1;d<=31;d++){
+      var t=typeOf(d); if(t==="none") continue;
+      var x=info(d), hasC=filled(x.challenge), hasG=filled(x.gainMagasin)||filled(x.gainVendeur), hasW=filled(x.magasin)||filled(x.vendeur);
+      html+='<button type="button" class="arow" data-d="'+d+'"><span class="sw '+t+'"></span>'+
+        '<span class="lbl"><b>'+DOWS[dowOf(d)]+' '+d+' déc.</b><small>'+(hasC?esc(x.challenge):"À compléter")+'</small></span>'+
+        '<span class="pills"><span class="pill '+(hasC?"ok":"todo")+'">Challenge</span>'+
+        '<span class="pill '+(hasG?"ok":"todo")+'">Gain</span>'+
+        '<span class="pill '+(hasW?"ok":"todo")+'">Gagnant</span></span></button>';
+    }
+    document.getElementById("alist").innerHTML=html;
+    document.getElementById("ghInfo").textContent=(GITHUB.owner&&GITHUB.repo?"Dépôt : "+GITHUB.owner+"/"+GITHUB.repo+". ":"Dépôt GitHub non détecté : ouvrez cette page depuis l'adresse github.io du site. ")+
+      (TOKEN?"Clé mémorisée sur cet appareil.":"Aucune clé mémorisée : collez votre clé GitHub pour pouvoir publier.");
+  }
+  document.getElementById("alist").addEventListener("click",function(e){
+    var b=e.target.closest(".arow"); if(b) openEditor(+b.getAttribute("data-d"),b);
+  });
+
+  function openEditor(d,from){
+    var x=info(d); lastBtn=from;
+    var f='<div class="d">'+DOWS[dowOf(d)]+' '+d+' décembre 2026</div>'+
+      '<div class="big" id="sheetTitle">Modifier le jour '+d+'</div>'+
+      '<form id="edForm"><div class="field"><label for="f-challenge">Challenge du jour</label><textarea id="f-challenge" placeholder="Ex. : 3 forfaits 5G vendus dans la journée">'+esc(x.challenge)+'</textarea></div>'+
+      '<div class="pair"><div class="field"><label for="f-gainMagasin">Gain magasin</label><input id="f-gainMagasin" type="text" value="'+esc(x.gainMagasin)+'" placeholder="Ex. : 20 €"></div>'+
+      '<div class="field"><label for="f-gainVendeur">Gain vendeur</label><input id="f-gainVendeur" type="text" value="'+esc(x.gainVendeur)+'" placeholder="Ex. : 30 €"></div></div>'+
+      '<div class="pair"><div class="field"><label for="f-magasin">Magasin gagnant</label><input id="f-magasin" type="text" value="'+esc(x.magasin)+'" placeholder="Nom du magasin"></div>'+
+      '<div class="field"><label for="f-vendeur">Vendeur gagnant</label><input id="f-vendeur" type="text" value="'+esc(x.vendeur)+'" placeholder="Prénom et nom"></div></div>'+
+      '<div class="msg" id="edMsg" role="status"></div><div class="btns"><button type="button" class="close alt" id="closeBtn">Annuler</button><button type="submit" class="close" id="saveBtn">Enregistrer</button></div></form>';
+    showSheet(f,"f-challenge");
+    document.getElementById("edForm").addEventListener("submit",function(e){
+      e.preventDefault();
+      var val=function(id){return document.getElementById(id).value.trim();};
+      var key="d"+pad(d);
+      var obj={challenge:val("f-challenge"),gainMagasin:val("f-gainMagasin"),gainVendeur:val("f-gainVendeur"),magasin:val("f-magasin"),vendeur:val("f-vendeur")};
+      var msg=document.getElementById("edMsg"), btn=document.getElementById("saveBtn");
+      btn.disabled=true; msg.className="msg"; msg.textContent="Publication sur le site…";
+      publishDay(key,obj,"Jour "+d+" mis à jour").then(function(jours){
+        DATA=jours; render(); closeSheet();
+        note.textContent="Jour "+d+" publié. Le calendrier sera à jour d'ici 1 à 2 minutes.";
+      }).catch(function(err){
+        btn.disabled=false; msg.className="msg err";
+        msg.textContent=(err&&err.msg)||"La publication a échoué. Vérifiez votre connexion et réessayez.";
+      });
+    });
+  }
+
+  document.getElementById("tokSave").addEventListener("click",function(){
+    TOKEN=document.getElementById("f-token").value.trim();
+    try{localStorage.setItem("ouest1_token",TOKEN);}catch(e){}
+    note.textContent=""; load();
+  });
+  document.getElementById("tokForget").addEventListener("click",function(){
+    TOKEN=""; document.getElementById("f-token").value="";
+    try{localStorage.removeItem("ouest1_token");}catch(e){}
+    render();
+  });
+
+  render(); load();
+})();
+</script>
+</body>
+</html>

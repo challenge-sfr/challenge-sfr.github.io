@@ -87,13 +87,27 @@ h1{font-family:var(--f-display);font-weight:900;font-size:48px;line-height:.95;m
 .day .n{font-family:var(--f-display);font-weight:900;font-size:clamp(13px,3.6vw,17px);line-height:1;color:#fff;
   position:absolute;left:5px;bottom:4px;z-index:1;text-shadow:0 1px 2px rgba(0,0,0,.55)}
 .gift.sat .n{text-shadow:0 1px 2px rgba(90,50,0,.8),0 0 3px rgba(90,50,0,.5)}
-/* case ouverte : le ruban est défait */
-.gift.open{background:
-    linear-gradient(180deg,rgba(255,255,255,.45) 0,rgba(255,255,255,.08) 34%,rgba(255,255,255,0) 35%,rgba(0,0,0,0) 80%,rgba(0,0,0,.22) 100%),
-    linear-gradient(180deg,transparent 30%,rgba(0,0,0,.28) 30% calc(30% + 2px),transparent calc(30% + 2px)),
-    var(--deco,none),
-    var(--base,linear-gradient(155deg,var(--c1),var(--c2)))}
-.gift.open::before{display:none}
+/* case ouverte : couvercle soulevé, intérieur visible, éclats dorés */
+.gift.open{
+  background:
+    radial-gradient(44% 7% at 50% 29%,rgba(45,0,8,.8) 0 55%,rgba(45,0,8,0) 100%),
+    linear-gradient(180deg,rgba(255,255,255,.35) 0,rgba(255,255,255,0) 30%,rgba(0,0,0,0) 75%,rgba(0,0,0,.22) 100%) 0 100%/100% 72% no-repeat,
+    var(--base,linear-gradient(155deg,var(--c1),var(--c2))) 0 100%/100% 72% no-repeat;
+  box-shadow:none;
+  filter:drop-shadow(0 4px 0 var(--c3)) drop-shadow(0 6px 6px rgba(40,0,8,.28))}
+.gift.open::before{left:-8%;top:1%;width:116%;height:19%;transform:rotate(-17deg);transform-origin:15% 100%;border-radius:5px;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.55),rgba(255,255,255,0) 55%,rgba(0,0,0,.22)),
+    linear-gradient(90deg,transparent calc(50% - 5px),var(--rib) calc(50% - 5px) calc(50% + 5px),transparent calc(50% + 5px)),
+    var(--base,linear-gradient(155deg,var(--c1),var(--c2)));
+  filter:drop-shadow(0 2px 2px rgba(0,0,0,.35));z-index:2}
+.gift.open::after{content:"";position:absolute;left:0;top:8%;width:100%;height:24%;pointer-events:none;z-index:1;
+  background:
+    radial-gradient(circle at 28% 72%,#ffe27a 0 2px,transparent 2.6px),
+    radial-gradient(circle at 63% 38%,#fff 0 1.5px,transparent 2px),
+    radial-gradient(circle at 76% 78%,#ffd34d 0 2px,transparent 2.6px),
+    radial-gradient(circle at 46% 16%,#ffe27a 0 1.4px,transparent 2px),
+    radial-gradient(55% 70% at 50% 100%,rgba(255,215,110,.6),rgba(255,215,110,0) 70%)}
 
 .day.today{animation:bob 1.8s ease-in-out infinite}
 .day.today{outline:3px solid var(--gold);outline-offset:3px}
@@ -118,40 +132,6 @@ h1{font-family:var(--f-display);font-weight:900;font-size:48px;line-height:.95;m
 .winners .row span:last-child{font-weight:700;text-align:right;overflow-wrap:anywhere;min-width:0;white-space:pre-wrap}
 .gift .won{position:absolute;right:4px;bottom:3px;z-index:1;width:14px;height:14px;filter:drop-shadow(0 1px 1px rgba(0,0,0,.5))}
 
-/* administration */
-.adminbtn{align-self:center;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:10px 18px;font:inherit;font-weight:700;cursor:pointer}
-.adminbtn:focus-visible,.arow:focus-visible,.field input:focus-visible,.field textarea:focus-visible{outline:3px solid var(--red);outline-offset:2px}
-.admin{display:flex;flex-direction:column;gap:10px}
-.admin h2{font-family:var(--f-display);font-weight:900;font-size:26px;margin:0;text-transform:uppercase}
-.admin .hint{font-size:13px;color:var(--muted);margin:0}
-.alist{display:flex;flex-direction:column;gap:6px}
-.arow{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px;font:inherit;color:var(--ink);cursor:pointer}
-.arow .sw{width:12px;height:28px;border-radius:3px;flex:none}
-.arow .sw.week{background:linear-gradient(155deg,#ff3b4e,#c2001a)}
-.arow .sw.sat{background:linear-gradient(135deg,#fff7c4,#ffd84a 30%,#c78a0e 60%,#ffe27a)}
-.arow .lbl{flex:1;min-width:0}
-.arow .lbl b{display:block}
-.arow .lbl small{color:var(--muted);display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.pill{font-size:11px;font-weight:700;border-radius:999px;padding:3px 8px;white-space:nowrap;flex:none}
-.pill.ok{background:color-mix(in srgb,#1f8a3a 18%,transparent);color:#1f8a3a}
-.pill.todo{background:var(--off);color:var(--muted);text-decoration:line-through;text-decoration-thickness:1px}
-.field{display:flex;flex-direction:column;gap:4px;margin-bottom:10px}
-.field label{font-size:13px;font-weight:700}
-.field input,.field textarea{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px;width:100%}
-.field textarea{min-height:96px;resize:vertical}
-.msg{font-size:13px;margin-top:8px;min-height:1em}
-.msg.err{color:var(--red)}
-.btns{display:flex;gap:8px}
-.btns .close{margin-top:10px}
-.close.alt{background:var(--off);color:var(--ink)}
-.pair{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:0 10px}
-.pair .field{min-width:0}
-.pills{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:4px;max-width:46%}
-.ghbox{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px}
-.ghbox .btns .close{margin-top:0;padding:11px}
-.ghbox .hint{margin-top:8px}
-.legend{align-self:center;background:none;border:0;font:inherit;font-size:11px;color:var(--muted);opacity:.7;padding:8px;cursor:pointer;letter-spacing:.04em}
-.legend:focus-visible{outline:2px solid var(--muted);outline-offset:2px}
 .foot{font-size:12px;color:var(--muted);text-align:center}
 .sim{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--surface);border:2px dashed var(--line);border-radius:14px;padding:10px 12px}
 .sim .lab{font-size:13px;color:var(--muted);text-align:center;min-width:0}
@@ -201,21 +181,7 @@ h1{font-family:var(--f-display);font-weight:900;font-size:48px;line-height:.95;m
     <div class="grid" id="grid"></div>
   </section>
 
-  <section class="admin" id="admin" hidden aria-labelledby="adminTitle">
-    <h2 id="adminTitle">Administration</h2>
-    <p class="hint">Touchez un jour pour écrire son challenge, ses gains et ses gagnants. Chaque enregistrement est publié sur le site et visible par tous d'ici 1 à 2 minutes.</p>
-    <div class="ghbox">
-      <div class="field"><label for="f-token">Clé GitHub</label>
-        <input id="f-token" type="password" autocomplete="off" placeholder="github_pat_…"></div>
-      <div class="btns"><button type="button" class="close" id="tokSave">Mémoriser sur cet appareil</button><button type="button" class="close alt" id="tokForget">Oublier</button></div>
-      <p class="hint" id="ghInfo"></p>
-    </div>
-    <p class="hint" id="adminNote"></p>
-    <div class="alist" id="alist"></div>
-    <button type="button" class="adminbtn" id="adminClose">Fermer l'administration</button>
-  </section>
   <div class="foot" id="foot"></div>
-  <button type="button" class="legend" id="legend">Challenge OUEST 1 · SFR · 2026</button>
 </div>
 
 <div class="scrim" id="scrim" hidden></div>
@@ -283,7 +249,6 @@ h1{font-family:var(--f-display);font-weight:900;font-size:48px;line-height:.95;m
   function info(d){return DATA["d"+pad(d)]||{};}
   function filled(v){return !!(v||"").trim();}
   function hasWinner(d){var x=info(d);return filled(x.magasin)||filled(x.vendeur);}
-  function hasGain(d){var x=info(d);return filled(x.gainMagasin)||filled(x.gainVendeur);}
   function showSheet(html,focusId){
     sheet.innerHTML=html; sheet.hidden=false; scrim.hidden=false;
     var c=document.getElementById(focusId||"closeBtn"); if(c) c.focus();
@@ -318,153 +283,27 @@ h1{font-family:var(--f-display);font-weight:900;font-size:48px;line-height:.95;m
   document.addEventListener("keydown",function(e){if(e.key==="Escape"&&!sheet.hidden)closeSheet();});
   window.addEventListener("hashchange",function(){location.reload();});
 
-  /* ---------- Données : fichier data.json du site ---------- */
-  /* Si le site est sur un nom de domaine personnalisé, remplissez owner et repo à la main. */
-  var GITHUB={owner:"",repo:"",branch:"main",path:"data.json"};
-  (function(){
-    var h=location.hostname;
-    if(!GITHUB.owner&&/\.github\.io$/.test(h)){
-      GITHUB.owner=h.split(".")[0];
-      var seg=location.pathname.split("/")[1]||"";
-      GITHUB.repo= seg&&seg.indexOf(".")<0 ? seg : h;
-    }
-  })();
-  var CODE_HASH="83813ecc74118d3d24f547d4849dbb99b6449bd3074988d639270f6856ed23ab";
-  var DATA={}, TOKEN="";
-  try{TOKEN=localStorage.getItem("ouest1_token")||"";}catch(e){}
-
+  /* ---------- Données publiées (data.json) ---------- */
+  var DATA={};
   var STAR='<svg class="won" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.6 1.5 6.8L12 17l-6.1 3.4 1.5-6.8L2.2 9l6.9-.7z" fill="#fff"/></svg>';
   function markWinners(){
     for(var d=1;d<=31;d++){
       var el=document.getElementById("day-"+d); if(!el||el.className.indexOf("gift")<0) continue;
       var old=el.querySelector(".won"); if(old) old.remove();
-      if(d<=openUpTo&&hasWinner(d)){ el.insertAdjacentHTML("beforeend",STAR); }
+      if(d<=openUpTo&&hasWinner(d)) el.insertAdjacentHTML("beforeend",STAR);
     }
   }
   fetch("data.json?v="+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.json():{};})
-    .then(function(j){DATA=(j&&j.jours)||{};markWinners();renderAdmin();}).catch(function(){});
+    .then(function(j){DATA=(j&&j.jours)||{};markWinners();}).catch(function(){});
 
-  function giftDays(){var r=[];for(var d=1;d<=31;d++){if(gain(d).type!=="none")r.push(d);}return r;}
-  function renderAdmin(){
-    var list=document.getElementById("alist"); if(document.getElementById("admin").hidden) return;
-    list.innerHTML=giftDays().map(function(d){
-      var g=gain(d), x=info(d), hasC=filled(x.challenge), hasG=hasGain(d), hasW=hasWinner(d);
-      var sub=hasC?esc(x.challenge):"À compléter";
-      return '<button type="button" class="arow" data-d="'+d+'"><span class="sw '+g.type+'"></span>'+
-        '<span class="lbl"><b>'+DOWS[dowOf(d)]+' '+d+' déc.</b><small>'+sub+'</small></span>'+
-        '<span class="pills"><span class="pill '+(hasC?"ok":"todo")+'">Challenge</span>'+
-        '<span class="pill '+(hasG?"ok":"todo")+'">Gain</span>'+
-        '<span class="pill '+(hasW?"ok":"todo")+'">Gagnant</span></span></button>';
-    }).join("");
-    var gi=document.getElementById("ghInfo");
-    gi.textContent=(GITHUB.owner&&GITHUB.repo?"Dépôt : "+GITHUB.owner+"/"+GITHUB.repo+". ":"Dépôt GitHub non détecté : ouvrez le site depuis son adresse github.io. ")+
-      (TOKEN?"Clé mémorisée sur cet appareil.":"Aucune clé mémorisée : collez votre clé GitHub pour pouvoir publier.");
+  if(sim){
+    document.getElementById("sim").hidden=false;
+    document.getElementById("simDay").textContent=DOWS[dowOf(sim)]+" "+sim+" déc.";
+    var pv=document.getElementById("simPrev"), nx=document.getElementById("simNext");
+    pv.disabled=sim<=1; nx.disabled=sim>=31;
+    pv.addEventListener("click",function(){location.hash="jour-"+(sim-1);});
+    nx.addEventListener("click",function(){location.hash="jour-"+(sim+1);});
   }
-  document.getElementById("alist").addEventListener("click",function(e){
-    var b=e.target.closest(".arow"); if(b) openEditor(+b.getAttribute("data-d"),b);
-  });
-
-  /* Publication sur GitHub */
-  function b64(str){return btoa(unescape(encodeURIComponent(str)));}
-  function ghUrl(){return "https://api.github.com/repos/"+GITHUB.owner+"/"+GITHUB.repo+"/contents/"+GITHUB.path;}
-  function ghHeaders(){return {"Authorization":"Bearer "+TOKEN,"Accept":"application/vnd.github+json"};}
-  function publish(label){
-    if(!TOKEN) return Promise.reject({msg:"Ajoutez d'abord votre clé GitHub dans le cadre « Clé GitHub »."});
-    if(!GITHUB.owner||!GITHUB.repo) return Promise.reject({msg:"Dépôt GitHub introuvable. Ouvrez le site depuis son adresse github.io."});
-    var body=JSON.stringify({jours:DATA},null,2);
-    function attempt(retry){
-      return fetch(ghUrl()+"?ref="+GITHUB.branch+"&t="+Date.now(),{headers:ghHeaders(),cache:"no-store"}).then(function(r){
-        if(r.status===401||r.status===403) throw {msg:"La clé GitHub est refusée. Vérifiez qu'elle n'a pas expiré et qu'elle a le droit « Contents : Read and write » sur ce dépôt."};
-        if(r.status===404) return null;
-        if(!r.ok) throw {msg:"GitHub ne répond pas correctement ("+r.status+"). Réessayez dans un instant."};
-        return r.json();
-      }).then(function(cur){
-        var payload={message:label,content:b64(body),branch:GITHUB.branch};
-        if(cur&&cur.sha) payload.sha=cur.sha;
-        return fetch(ghUrl(),{method:"PUT",headers:ghHeaders(),body:JSON.stringify(payload)});
-      }).then(function(r){
-        if(r.status===409&&retry) return attempt(false);
-        if(r.status===401||r.status===403) throw {msg:"La clé GitHub est refusée. Vérifiez qu'elle a le droit « Contents : Read and write » sur ce dépôt."};
-        if(r.status===404) throw {msg:"Dépôt introuvable avec cette clé. Vérifiez que la clé donne accès au dépôt "+GITHUB.owner+"/"+GITHUB.repo+"."};
-        if(!r.ok) throw {msg:"La publication a échoué ("+r.status+"). Réessayez dans un instant."};
-      });
-    }
-    return attempt(true);
-  }
-
-  function openEditor(d,from){
-    var g=gain(d), x=info(d); lastBtn=from;
-    var f='<div class="d">'+DOWS[dowOf(d)]+' '+d+' décembre 2026</div>'+
-      '<div class="big" id="sheetTitle">Modifier le jour '+d+'</div>'+
-      '<form id="edForm"><div class="field"><label for="f-challenge">Challenge du jour</label><textarea id="f-challenge" placeholder="Ex. : 3 forfaits 5G vendus dans la journée">'+esc(x.challenge)+'</textarea></div>'+
-      '<div class="pair"><div class="field"><label for="f-gainMagasin">Gain magasin</label><input id="f-gainMagasin" type="text" value="'+esc(x.gainMagasin)+'" placeholder="Ex. : 20 €"></div>'+
-      '<div class="field"><label for="f-gainVendeur">Gain vendeur</label><input id="f-gainVendeur" type="text" value="'+esc(x.gainVendeur)+'" placeholder="Ex. : 30 €"></div></div>'+
-      '<div class="pair"><div class="field"><label for="f-magasin">Magasin gagnant</label><input id="f-magasin" type="text" value="'+esc(x.magasin)+'" placeholder="Nom du magasin"></div>'+
-      '<div class="field"><label for="f-vendeur">Vendeur gagnant</label><input id="f-vendeur" type="text" value="'+esc(x.vendeur)+'" placeholder="Prénom et nom"></div></div>';
-    f+='<div class="msg" id="edMsg" role="status"></div><div class="btns"><button type="button" class="close alt" id="closeBtn">Annuler</button><button type="submit" class="close" id="saveBtn">Enregistrer</button></div></form>';
-    showSheet(f,"f-challenge");
-    document.getElementById("edForm").addEventListener("submit",function(e){
-      e.preventDefault();
-      var val=function(id){var el=document.getElementById(id);return el?el.value.trim():"";};
-      var key="d"+pad(d), before=DATA[key];
-      DATA[key]={challenge:val("f-challenge"),gainMagasin:val("f-gainMagasin"),gainVendeur:val("f-gainVendeur"),magasin:val("f-magasin"),vendeur:val("f-vendeur")};
-      var msg=document.getElementById("edMsg"), btn=document.getElementById("saveBtn");
-      btn.disabled=true; msg.className="msg"; msg.textContent="Publication sur le site…";
-      publish("Jour "+d+" mis à jour").then(function(){
-        renderAdmin(); markWinners();
-        document.getElementById("adminNote").textContent="Jour "+d+" publié. Le site sera à jour d'ici 1 à 2 minutes.";
-        closeSheet();
-      }).catch(function(err){
-        if(before===undefined) delete DATA[key]; else DATA[key]=before;
-        btn.disabled=false; msg.className="msg err";
-        msg.textContent=(err&&err.msg)||"La publication a échoué. Vérifiez votre connexion et réessayez.";
-      });
-    });
-  }
-
-  /* Accès admin par code */
-  function sha256(str){
-    return crypto.subtle.digest("SHA-256",new TextEncoder().encode(str)).then(function(buf){
-      return Array.prototype.map.call(new Uint8Array(buf),function(b){return ("0"+b.toString(16)).slice(-2);}).join("");
-    });
-  }
-  function openAdmin(){
-    var a=document.getElementById("admin"); a.hidden=false;
-    try{sessionStorage.setItem("ouest1_admin","1");}catch(e){}
-    document.getElementById("f-token").value=TOKEN;
-    renderAdmin(); a.scrollIntoView({behavior:"smooth",block:"start"});
-  }
-  document.getElementById("legend").addEventListener("click",function(){
-    if(!document.getElementById("admin").hidden) return;
-    lastBtn=this;
-    showSheet('<div class="big" id="sheetTitle">Code d\'accès</div><form id="codeForm"><div class="field"><label for="f-code">Code</label>'+
-      '<input id="f-code" type="password" inputmode="numeric" autocomplete="off"></div><div class="msg err" id="codeMsg" role="status"></div>'+
-      '<div class="btns"><button type="button" class="close alt" id="closeBtn">Annuler</button><button type="submit" class="close">Valider</button></div></form>',"f-code");
-    document.getElementById("codeForm").addEventListener("submit",function(e){
-      e.preventDefault();
-      sha256(document.getElementById("f-code").value.trim()).then(function(h){
-        if(h===CODE_HASH){closeSheet();openAdmin();}
-        else document.getElementById("codeMsg").textContent="Code incorrect.";
-      }).catch(function(){document.getElementById("codeMsg").textContent="Ouvrez le site en https pour accéder à l'administration.";});
-    });
-  });
-  document.getElementById("adminClose").addEventListener("click",function(){
-    document.getElementById("admin").hidden=true;
-    try{sessionStorage.removeItem("ouest1_admin");}catch(e){}
-    window.scrollTo({top:0,behavior:"smooth"});
-  });
-  document.getElementById("tokSave").addEventListener("click",function(){
-    TOKEN=document.getElementById("f-token").value.trim();
-    try{localStorage.setItem("ouest1_token",TOKEN);}catch(e){}
-    renderAdmin();
-  });
-  document.getElementById("tokForget").addEventListener("click",function(){
-    TOKEN=""; document.getElementById("f-token").value="";
-    try{localStorage.removeItem("ouest1_token");}catch(e){}
-    renderAdmin();
-  });
-  try{ if(sessionStorage.getItem("ouest1_admin")==="1") openAdmin(); }catch(e){}
-
   var foot=document.getElementById("foot");
   if(sim) foot.textContent="Mode simulation actif. Retirez #jour-"+sim+" de l'adresse pour revenir au mode normal.";
   else if(preview) foot.textContent="Mode aperçu actif. Retirez #apercu de l'adresse pour revenir au mode normal.";
