@@ -7,7 +7,7 @@
 <title>Challenge OUEST 1</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Figtree:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Mountains+of+Christmas:wght@700&family=Figtree:wght@400;600;700&display=swap">
 <style>
 /* Mise en page : une colonne mobile, grille du mois en 7 colonnes (lun→dim) de paquets cadeaux, détail du jour en panneau bas */
 :root{
@@ -25,27 +25,57 @@
 
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.45}
-/* Fond : chalet enneigé (fond.jpg) en haut de page, la neige se prolonge dessous */
+/* Fond : chalet enneigé (fond.jpg) derrière le titre et les cadeaux, la neige se prolonge dessous */
 html{background:#dbeaf7}
-body{background:linear-gradient(180deg,#98cff6 0,#d4edfc min(48vw,370px),#dbeaf7 min(80vw,610px),#dbeaf7 100%);min-height:100%}
-.hero{position:relative;width:min(100%,760px);margin:0 auto;aspect-ratio:896/1200;
-  background:url("fond.jpg") center top / 100% auto no-repeat}
-.hero::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:14%;pointer-events:none;
-  background:linear-gradient(180deg,rgba(219,234,247,0),#dbeaf7 92%)}
+body{min-height:100%;
+  --iw:min(100vw,760px);
+  background:
+    linear-gradient(180deg,rgba(219,234,247,0),#dbeaf7) center calc(var(--iw) * 1.339 - 90px) / var(--iw) 90px no-repeat,
+    url("fond.jpg") center top / var(--iw) auto no-repeat,
+    linear-gradient(180deg,#98cff6 0,#d4edfc calc(var(--iw) * .48),#dbeaf7 calc(var(--iw) * .8),#dbeaf7 100%)}
 .dow span{color:#1d3557 !important;text-shadow:0 1px 0 rgba(255,255,255,.8)}
 .foot{color:#1d3557 !important}
 .sign{align-self:flex-end;font-family:var(--f-body);font-style:italic;font-size:11px;color:#1d3557;opacity:.45;letter-spacing:.04em;margin-top:-8px}
-.wrap{max-width:560px;margin:0 auto;padding-block:4px 20px;
+.wrap{max-width:560px;margin:0 auto;padding-block:16px 20px;
   padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
   display:flex;flex-direction:column;gap:22px}
 
-header{position:relative;z-index:1;padding-top:18px;padding-bottom:0;
-  padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px))}
-h1{font-family:var(--f-display);font-weight:900;font-size:clamp(32px,9.5vw,64px);line-height:.95;margin:0;text-transform:uppercase;letter-spacing:.01em;
-  background:linear-gradient(180deg,#ff7a86 0%,#ff2a3d 30%,#e2001a 52%,#a3001a 78%,#d4001a 100%);-webkit-background-clip:text;background-clip:text;color:transparent;
-  filter:drop-shadow(0 -1px 0 rgba(255,255,255,.85)) drop-shadow(0 2px 0 #7a000e) drop-shadow(0 6px 8px rgba(10,40,90,.35))}
-.sub{font-family:var(--f-display);font-weight:700;font-size:clamp(16px,4.6vw,26px);letter-spacing:.08em;text-transform:uppercase;margin-top:4px;color:#fff;
-  text-shadow:0 1px 0 rgba(29,53,87,.55),0 2px 6px rgba(29,53,87,.35)}
+header{position:relative;text-align:center;padding-top:6px}
+h1{font-family:"Mountains of Christmas",var(--f-display);font-weight:700;font-size:clamp(34px,10.5vw,62px);line-height:1;margin:0;color:#d4001a;letter-spacing:.01em;
+  text-shadow:0 1.5px 0 #fff,0 -1.5px 0 #fff,1.5px 0 0 #fff,-1.5px 0 0 #fff,1.5px 1.5px 0 #fff,-1.5px 1.5px 0 #fff,1.5px -1.5px 0 #fff,-1.5px -1.5px 0 #fff,
+    0 4px 0 #8a000f,0 6px 12px rgba(10,40,90,.35)}
+.garland{display:block;width:min(100%,420px);height:auto;margin:-2px auto 0;overflow:visible;filter:drop-shadow(0 2px 2px rgba(10,40,30,.3))}
+.spk{position:absolute;width:var(--s,12px);height:var(--s,12px);pointer-events:none}
+.spk svg{width:100%;height:100%;display:block}
+.sub{font-family:"Mountains of Christmas",var(--f-display);font-weight:700;font-size:clamp(18px,5.4vw,28px);margin-top:2px;color:#fff;
+  text-shadow:0 2px 0 #1f6b3a,0 3px 8px rgba(10,40,90,.35)}
+/* panneau givré sous les cadeaux */
+.cal{background:rgba(255,255,255,.38);-webkit-backdrop-filter:blur(9px) saturate(1.15);backdrop-filter:blur(9px) saturate(1.15);
+  border:1px solid rgba(255,255,255,.7);border-radius:18px;padding:12px 8px 14px;box-shadow:0 10px 30px rgba(20,50,90,.18)}
+/* historique des gains */
+.hist{display:flex;flex-direction:column;align-items:center;gap:12px}
+.histbtn{position:relative;border:2px solid #f5c842;border-radius:999px;padding:12px 22px 12px 18px;font:inherit;font-weight:700;font-size:15px;color:#fff;cursor:pointer;
+  display:inline-flex;align-items:center;gap:10px;
+  background:linear-gradient(180deg,#ff3b4e,#c4001a 60%,#9b0012);box-shadow:inset 0 1px 0 rgba(255,255,255,.45),0 4px 0 #6b000c,0 8px 16px rgba(20,50,90,.25)}
+.histbtn::before{content:"";position:absolute;left:14px;right:14px;top:-7px;height:10px;border-radius:10px;background:#fff;
+  -webkit-mask:radial-gradient(circle at 8px 10px,#000 6px,transparent 6.5px) 0 0/16px 10px repeat-x;mask:radial-gradient(circle at 8px 10px,#000 6px,transparent 6.5px) 0 0/16px 10px repeat-x}
+.histbtn:active{transform:translateY(2px);box-shadow:inset 0 1px 0 rgba(255,255,255,.45),0 2px 0 #6b000c,0 4px 8px rgba(20,50,90,.25)}
+.histbtn:focus-visible{outline:3px solid #1f6b3a;outline-offset:3px}
+.histbtn svg{width:20px;height:20px;flex:none}
+.histbtn .chev{transition:transform .2s}
+.histbtn[aria-expanded="true"] .chev{transform:rotate(180deg)}
+.hlist{width:100%;display:flex;flex-direction:column;gap:10px}
+.hitem{background:rgba(255,255,255,.82);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.9);border-radius:14px;padding:12px 14px;
+  color:#22161a;box-shadow:0 4px 14px rgba(20,50,90,.12);display:flex;flex-direction:column;gap:6px;min-width:0}
+.hitem .hd{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.hitem .dt{font-family:"Mountains of Christmas",var(--f-display);font-weight:700;font-size:22px;color:#c4001a;line-height:1}
+.hitem .ch{font-size:13px;color:#5b4b4f;overflow-wrap:anywhere}
+.hitem .rows{display:flex;flex-direction:column;gap:4px}
+.hitem .row{display:flex;justify-content:space-between;gap:10px;font-size:14px}
+.hitem .row span:first-child{color:#5b4b4f}
+.hitem .row span:last-child{font-weight:700;text-align:right;overflow-wrap:anywhere;min-width:0}
+.hitem .gain{color:#1f6b3a}
+.hempty{background:rgba(255,255,255,.75);border-radius:14px;padding:12px 14px;color:#5b4b4f;text-align:center;font-size:14px;width:100%}
 
 .cal{display:flex;flex-direction:column;gap:6px}
 .dow,.grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px}
@@ -127,13 +157,18 @@ h1{font-family:var(--f-display);font-weight:900;font-size:clamp(32px,9.5vw,64px)
 </head>
 <body>
 
-<div class="hero">
+<div class="wrap">
   <header>
+    <span class="spk" style="left:2%;top:6px;--s:14px"><svg viewBox="0 0 24 24"><path d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z" fill="#e2001a"/></svg></span>
+    <span class="spk" style="right:4%;top:0;--s:18px"><svg viewBox="0 0 24 24"><path d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z" fill="#e2001a"/></svg></span>
+    <span class="spk" style="left:12%;top:44px;--s:9px"><svg viewBox="0 0 24 24"><path d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z" fill="#f5c842"/></svg></span>
+    <span class="spk" style="right:13%;top:46px;--s:10px"><svg viewBox="0 0 24 24"><path d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z" fill="#ff4d5e"/></svg></span>
+    <span class="spk" style="left:30%;top:-4px;--s:8px"><svg viewBox="0 0 24 24"><path d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z" fill="#ff4d5e"/></svg></span>
+    <span class="spk" style="right:30%;top:-2px;--s:9px"><svg viewBox="0 0 24 24"><path d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z" fill="#f5c842"/></svg></span>
     <h1>Challenge OUEST 1</h1>
+    <svg class="garland" id="garland" viewBox="0 0 320 40" aria-hidden="true"></svg>
     <div class="sub">Décembre 2026</div>
   </header>
-</div>
-<div class="wrap">
 
   <div class="sim" id="sim" hidden>
     <button type="button" id="simPrev" aria-label="Jour précédent">‹</button>
@@ -144,6 +179,15 @@ h1{font-family:var(--f-display);font-weight:900;font-size:clamp(32px,9.5vw,64px)
   <section class="cal" aria-label="Calendrier de décembre 2026">
     <div class="dow" aria-hidden="true"><span>Lun</span><span>Mar</span><span>Mer</span><span>Jeu</span><span>Ven</span><span>Sam</span></div>
     <div class="grid" id="grid"></div>
+  </section>
+
+  <section class="hist" aria-label="Historique des gains">
+    <button type="button" class="histbtn" id="histBtn" aria-expanded="false" aria-controls="hlist">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="10" width="18" height="11" rx="1.5" fill="#f5c842"/><rect x="2" y="7" width="20" height="4" rx="1" fill="#ffe27a"/><rect x="10.8" y="7" width="2.4" height="14" fill="#e2001a"/><path d="M12 7C9 2 5 4 8 7M12 7c3-5 7-3 4 0" stroke="#e2001a" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+      Historique des gains
+      <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="hlist" id="hlist" hidden></div>
   </section>
 
   <div class="foot" id="foot"></div>
@@ -341,7 +385,50 @@ h1{font-family:var(--f-display);font-weight:900;font-size:clamp(32px,9.5vw,64px)
     }
   }
   fetch("data.json?v="+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.json():{};})
-    .then(function(j){DATA=(j&&j.jours)||{};markWinners();}).catch(function(){});
+    .then(function(j){DATA=(j&&j.jours)||{};markWinners();renderHist();}).catch(function(){});
+
+  /* Guirlande de sapin sous le titre */
+  (function(){
+    var g=document.getElementById("garland"), o="", pts=[];
+    for(var i=0;i<=80;i++){var x=4+i*3.9, t=(x-4)/312, y=8+Math.abs(Math.sin(t*Math.PI*2))*16;pts.push([x,y]);}
+    o+='<path d="M'+pts.map(function(p){return p[0].toFixed(1)+" "+p[1].toFixed(1);}).join("L")+'" stroke="#2d5a27" stroke-width="3" fill="none"/>';
+    var greens=["#1f6b3a","#2f8a50","#14532b","#3a9a5c"];
+    pts.forEach(function(p,i){
+      for(var k=0;k<4;k++){var a=(i*47+k*90)%360*Math.PI/180, l=5+(k%2)*2;
+        o+='<path d="M'+p[0].toFixed(1)+' '+p[1].toFixed(1)+'l'+(Math.cos(a)*l).toFixed(1)+' '+(Math.sin(a)*l).toFixed(1)+'" stroke="'+greens[(i+k)%4]+'" stroke-width="1.6" stroke-linecap="round"/>';}
+    });
+    [[10,"#e2001a"],[22,"#f5c842"],[34,"#e2001a"],[46,"#f5c842"],[58,"#e2001a"],[70,"#f5c842"]].forEach(function(b){
+      var p=pts[b[0]]; o+='<circle cx="'+p[0]+'" cy="'+(p[1]+5)+'" r="3.4" fill="'+b[1]+'" stroke="#fff" stroke-opacity=".6" stroke-width=".8"/><circle cx="'+(p[0]-1)+'" cy="'+(p[1]+4)+'" r=".9" fill="#fff" opacity=".8"/>';
+    });
+    [5,16,28,40,52,64,76].forEach(function(i,n){var p=pts[i];o+='<circle cx="'+p[0]+'" cy="'+(p[1]-3)+'" r="1.6" fill="'+(n%2?"#fff6b0":"#ffd34d")+'"/>';});
+    [0,40,80].forEach(function(i){var p=pts[i];o+='<g transform="translate('+p[0]+' '+(p[1]-1)+')"><ellipse cx="-4" cy="0" rx="4.5" ry="2.6" fill="#e2001a" transform="rotate(-20 -4 0)"/><ellipse cx="4" cy="0" rx="4.5" ry="2.6" fill="#e2001a" transform="rotate(20 4 0)"/><circle r="1.8" fill="#9b0012"/></g>';});
+    g.innerHTML=o;
+  })();
+
+  /* Historique des gains */
+  var histBtn=document.getElementById("histBtn"), hlist=document.getElementById("hlist");
+  function renderHist(){
+    if(hlist.hidden) return;
+    var items=[];
+    for(var d=Math.min(openUpTo,31);d>=1;d--){
+      if(gain(d).type==="none") continue;
+      var x=info(d), prizes=[], wins=[];
+      if(filled(x.gainMagasin)) prizes.push(["Gain magasin",x.gainMagasin]);
+      if(filled(x.gainVendeur)) prizes.push(["Gain vendeur",x.gainVendeur]);
+      if(filled(x.magasin)) wins.push(["Magasin gagnant",x.magasin]);
+      if(filled(x.vendeur)) wins.push(["Vendeur gagnant",x.vendeur]);
+      if(!wins.length&&!prizes.length) continue;
+      items.push('<article class="hitem"><div class="hd"><span class="dt">'+DOWS[dowOf(d)].charAt(0).toUpperCase()+DOWS[dowOf(d)].slice(1)+' '+d+' déc.</span></div>'+
+        (filled(x.challenge)?'<div class="ch">'+esc(x.challenge)+'</div>':'')+
+        '<div class="rows">'+prizes.map(function(r){return '<div class="row"><span>'+r[0]+'</span><span class="gain">'+esc(r[1])+'</span></div>';}).join("")+
+        wins.map(function(r){return '<div class="row"><span>'+r[0]+'</span><span>'+esc(r[1])+'</span></div>';}).join("")+'</div></article>');
+    }
+    hlist.innerHTML=items.length?items.join(""):'<div class="hempty">Aucun gain pour le moment. Revenez après les premiers challenges !</div>';
+  }
+  histBtn.addEventListener("click",function(){
+    var open=hlist.hidden; hlist.hidden=!open; histBtn.setAttribute("aria-expanded",open?"true":"false");
+    if(open) renderHist();
+  });
 
   if(sim){
     document.getElementById("sim").hidden=false;
