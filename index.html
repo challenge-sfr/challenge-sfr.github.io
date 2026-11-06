@@ -51,10 +51,10 @@ h1{font-family:var(--f-display);font-weight:900;font-size:48px;line-height:.95;m
 .day:active{transform:scale(.94)}
 .day:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
 
-/* ---------- Boules de sapin ---------- */
+/* ---------- Cadeaux en relief ---------- */
 .day.orn{background:none}
 .day.orn svg{width:100%;height:100%;overflow:visible;display:block}
-.day.orn .num{font-family:var(--f-display);font-weight:900;font-size:15px;fill:#fff;paint-order:stroke;stroke:rgba(0,0,0,.35);stroke-width:2px}
+.day.orn .num{font-family:var(--f-display);font-weight:900;font-size:14px;fill:var(--ink)}
 
 .day.today{animation:bob 1.8s ease-in-out infinite}
 .day.today{outline:3px solid var(--gold);outline-offset:3px;border-radius:12px}
@@ -132,23 +132,13 @@ h1{font-family:var(--f-display);font-weight:900;font-size:48px;line-height:.95;m
 </div>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
-<radialGradient id="pEdge" cx="40%" cy="35%" r="70%"><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".45"/></radialGradient>
-<radialGradient id="pIce" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#ffffff"/><stop offset=".45" stop-color="#bfe2f7"/><stop offset="1" stop-color="#3f78ad"/></radialGradient>
-<radialGradient id="pRed" cx="34%" cy="28%" r="78%"><stop offset="0" stop-color="#ff7a86"/><stop offset=".35" stop-color="#e2001a"/><stop offset=".8" stop-color="#8a000f"/><stop offset="1" stop-color="#4a0008"/></radialGradient>
-<radialGradient id="pGold" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#fffbe0"/><stop offset=".35" stop-color="#f6cf52"/><stop offset=".8" stop-color="#b57d0c"/><stop offset="1" stop-color="#6b4300"/></radialGradient>
-<radialGradient id="pCry" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#ff9aa4"/><stop offset=".5" stop-color="#d0001a"/><stop offset="1" stop-color="#5c000b"/></radialGradient>
-<linearGradient id="pCap" x1="0" x2="1"><stop offset="0" stop-color="#8a5a06"/><stop offset=".35" stop-color="#ffe9a0"/><stop offset=".6" stop-color="#d9a42a"/><stop offset="1" stop-color="#7a4e04"/></linearGradient>
-<linearGradient id="pCapS" x1="0" x2="1"><stop offset="0" stop-color="#6d7a88"/><stop offset=".35" stop-color="#ffffff"/><stop offset=".6" stop-color="#b9c4cf"/><stop offset="1" stop-color="#5a6673"/></linearGradient>
-<radialGradient id="pGlow"><stop offset="0" stop-color="#fff6c4" stop-opacity=".95"/><stop offset="1" stop-color="#ffd34d" stop-opacity="0"/></radialGradient>
-<clipPath id="pBall"><circle cx="30" cy="48" r="22"/></clipPath>
-<clipPath id="pBot"><path d="M7 50A23 23 0 0 0 53 50Z"/></clipPath>
-<clipPath id="pTop"><path d="M7 46A23 23 0 0 1 53 46Z"/></clipPath>
-<symbol id="sIce" viewBox="0 0 60 82"><circle cx="30" cy="48" r="22" fill="url(#pIce)"/><g clip-path="url(#pBall)" fill="#fff"><circle cx="14" cy="56" r=".9" opacity=".8"/><circle cx="19" cy="62" r=".7" opacity=".7"/><circle cx="40" cy="60" r="1" opacity=".8"/><circle cx="45" cy="52" r=".7" opacity=".7"/><path d="M8 58Q30 70 52 58V72H8Z" opacity=".35"/></g><g stroke="#fff" stroke-width="1.3" stroke-linecap="round" fill="none" opacity=".95"><path d="M30 34V52M22.2 38.5L37.8 47.5M22.2 47.5L37.8 38.5"/><path d="M27.5 36.5L30 39L32.5 36.5M27.5 49.5L30 47L32.5 49.5"/></g><circle cx="30" cy="48" r="21.4" fill="none" stroke="#fff" stroke-opacity=".6"/><circle cx="30" cy="48" r="22" fill="url(#pEdge)" opacity=".7"/><ellipse cx="21" cy="36" rx="7" ry="3.5" fill="#fff" opacity=".7" transform="rotate(-35 21 36)"/></symbol>
-<symbol id="sMirR" viewBox="0 0 60 82"><circle cx="30" cy="48" r="22" fill="url(#pRed)"/><path d="M10 54Q30 46 50 54" stroke="#4a0008" stroke-width="5" fill="none" opacity=".35" clip-path="url(#pBall)"/><path d="M14 63A19 19 0 0 0 44 66" stroke="#ff8a96" stroke-width="2" fill="none" opacity=".6"/><circle cx="30" cy="48" r="22" fill="url(#pEdge)"/><ellipse cx="21" cy="37" rx="8" ry="4" fill="#fff" opacity=".55" transform="rotate(-35 21 37)"/><circle cx="18.5" cy="35" r="2.2" fill="#fff"/></symbol>
-<symbol id="sMirG" viewBox="0 0 60 82"><circle cx="30" cy="48" r="22" fill="url(#pGold)"/><path d="M10 54Q30 46 50 54" stroke="#6b4300" stroke-width="5" fill="none" opacity=".3" clip-path="url(#pBall)"/><path d="M14 63A19 19 0 0 0 44 66" stroke="#fff2b0" stroke-width="2" fill="none" opacity=".7"/><circle cx="30" cy="48" r="22" fill="url(#pEdge)"/><ellipse cx="21" cy="37" rx="8" ry="4" fill="#fff" opacity=".6" transform="rotate(-35 21 37)"/><circle cx="18.5" cy="35" r="2.2" fill="#fff"/></symbol>
-<symbol id="sGliG" viewBox="0 0 60 82"><circle cx="30" cy="48" r="22" fill="url(#pGold)"/><g clip-path="url(#pBall)"><g fill="#fff"><circle cx="16" cy="44" r=".9"/><circle cx="22" cy="52" r=".6"/><circle cx="27" cy="40" r=".7"/><circle cx="34" cy="55" r="1"/><circle cx="41" cy="45" r=".7"/><circle cx="45" cy="57" r=".9"/><circle cx="20" cy="62" r=".7"/><circle cx="38" cy="36" r=".8"/><circle cx="12" cy="52" r=".6"/><circle cx="48" cy="48" r=".6"/></g><g fill="#7a4e04" opacity=".55"><circle cx="19" cy="48" r=".8"/><circle cx="31" cy="50" r=".7"/><circle cx="43" cy="51" r=".8"/><circle cx="37" cy="61" r=".8"/><circle cx="14" cy="58" r=".6"/></g><path d="M8 43H52" stroke="#e2001a" stroke-width="3"/></g><circle cx="30" cy="48" r="22" fill="url(#pEdge)" opacity=".8"/><ellipse cx="21" cy="37" rx="6" ry="3" fill="#fff" opacity=".6" transform="rotate(-35 21 37)"/></symbol>
-<symbol id="sGliR" viewBox="0 0 60 82"><circle cx="30" cy="48" r="22" fill="url(#pRed)"/><g clip-path="url(#pBall)"><g fill="#ffe9a0"><circle cx="16" cy="44" r=".9"/><circle cx="22" cy="52" r=".6"/><circle cx="27" cy="40" r=".7"/><circle cx="34" cy="55" r="1"/><circle cx="41" cy="45" r=".7"/><circle cx="45" cy="57" r=".9"/><circle cx="20" cy="62" r=".7"/><circle cx="38" cy="36" r=".8"/><circle cx="12" cy="52" r=".6"/><circle cx="48" cy="48" r=".6"/></g><g fill="#fff"><circle cx="19" cy="48" r=".7"/><circle cx="31" cy="50" r=".6"/><circle cx="43" cy="51" r=".7"/></g><path d="M8 43H52" stroke="#f5c842" stroke-width="3"/></g><circle cx="30" cy="48" r="22" fill="url(#pEdge)" opacity=".8"/><ellipse cx="21" cy="37" rx="6" ry="3" fill="#fff" opacity=".55" transform="rotate(-35 21 37)"/></symbol>
-<symbol id="sCry" viewBox="0 0 60 82"><circle cx="30" cy="48" r="22" fill="url(#pCry)"/><g clip-path="url(#pBall)"><polygon points="30,26 40,37 30,48 20,37" fill="#fff" opacity=".22"/><polygon points="20,37 30,48 20,59 10,48" fill="#000" opacity=".12"/><polygon points="40,37 50,48 40,59 30,48" fill="#000" opacity=".2"/><polygon points="30,48 40,59 30,70 20,59" fill="#000" opacity=".28"/><polygon points="10,26 20,37 10,48 0,37" fill="#fff" opacity=".15"/><g stroke="#ffb3ba" stroke-width=".8" opacity=".7" fill="none"><path d="M0 37L30 7L60 37M0 37L30 67L60 37M0 59L30 29L60 59M0 59L30 89L60 59M-10 48L30 8L70 48M-10 48L30 88L70 48"/></g></g><circle cx="30" cy="48" r="22" fill="url(#pEdge)" opacity=".7"/><path d="M17 33L21 31L19 36Z" fill="#fff" opacity=".9"/><circle cx="24" cy="31" r="1" fill="#fff"/></symbol>
+<clipPath id="kL"><polygon points="8,43 30,53 30,74 8,64"/></clipPath>
+<clipPath id="kR"><polygon points="30,53 52,43 52,64 30,74"/></clipPath>
+<clipPath id="kT"><polygon points="6,38 30,27 54,38 30,49"/></clipPath>
+<clipPath id="kSL"><polygon points="6,38 30,49 30,54 6,43"/></clipPath>
+<clipPath id="kSR"><polygon points="30,49 54,38 54,43 30,54"/></clipPath>
+<radialGradient id="kGlow"><stop offset="0" stop-color="#fff6c4" stop-opacity=".95"/><stop offset="1" stop-color="#ffd34d" stop-opacity="0"/></radialGradient>
+<linearGradient id="kSheen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".45"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/></linearGradient>
 </defs></svg>
 
 <div class="scrim" id="scrim" hidden></div>
@@ -188,14 +178,15 @@ h1{font-family:var(--f-display);font-weight:900;font-size:48px;line-height:.95;m
     '<circle cx="22" cy="48" r="2.4" fill="#ffd34d"/><circle cx="40" cy="61" r="2.6" fill="#e2001a"/>'+
     '<circle cx="19" cy="63" r="2.4" fill="#4aa3ff"/><circle cx="31" cy="56" r="2.2" fill="#fff"/>'+
     '</svg>';
-  /* Boules de sapin : 6 variantes réparties au hasard, mais toujours de la même façon pour tout le monde */
+  /* Cadeaux en relief : 7 styles répartis au hasard, mais toujours de la même façon pour tout le monde */
   var STYLES={
-    ice: {sym:"sIce", cap:"pCapS",str:"#9aa6b2",inside:"#24527d",star:"#fff",   starS:"#8fc3e8",num:"#1d3f63",numS:"rgba(255,255,255,.7)",spark:"#fff"},
-    mirR:{sym:"sMirR",cap:"pCap", str:"#c8901a",inside:"#2a0005",star:"#ffd34d",starS:"#c8901a",num:"#fff",   numS:"rgba(0,0,0,.4)"},
-    mirG:{sym:"sMirG",cap:"pCap", str:"#c8901a",inside:"#4a2e00",star:"#ffd34d",starS:"#c8901a",num:"#6b1000",numS:"rgba(255,255,255,.6)"},
-    gliG:{sym:"sGliG",cap:"pCap", str:"#c8901a",inside:"#4a2e00",star:"#fff6c4",starS:"#c8901a",num:"#6b1000",numS:"rgba(255,255,255,.6)",spark:"#ffd34d"},
-    gliR:{sym:"sGliR",cap:"pCap", str:"#c8901a",inside:"#2a0005",star:"#ffd34d",starS:"#c8901a",num:"#fff",   numS:"rgba(0,0,0,.4)",spark:"#ffd34d"},
-    cry: {sym:"sCry", cap:"pCapS",str:"#9aa6b2",inside:"#2a0005",star:"#fff",   starS:"#ffb3ba",num:"#fff",   numS:"rgba(0,0,0,.4)"}
+    ice:{L:"#bfe2f7",R:"#6fa6d4",T:"#eef8ff",rib:"#ffffff",ribD:"#b9cde2",deco:"frost",gloss:1,star:"#fff",spark:"#cfe9fb"},
+    laq:{L:"#d4001a",R:"#86000f",T:"#ff3b4e",rib:"#f5c842",ribD:"#a8700a",deco:"gloss",gloss:1,star:"#ffd34d"},
+    gli:{L:"#e6b12c",R:"#a06a08",T:"#ffe27a",rib:"#e2001a",ribD:"#7a000e",deco:"glitter",gloss:1,star:"#fff6c4",spark:"#ffd34d"},
+    cry:{L:"#c8001a",R:"#70000d",T:"#ff5a6a",rib:"#eef3f8",ribD:"#8f9caa",deco:"facets",gloss:1,star:"#fff"},
+    vel:{L:"#8a0012",R:"#4d0009",T:"#ab0018",rib:"#e3e9ef",ribD:"#8f9caa",deco:"none",gloss:0,star:"#fff"},
+    sap:{L:"#1f7a40",R:"#11472a",T:"#33a05b",rib:"#f5c842",ribD:"#a8700a",deco:"stars",gloss:1,star:"#ffd34d"},
+    suc:{L:"#ffffff",R:"#d8d2d2",T:"#ffffff",rib:"#1f7a40",ribD:"#11472a",deco:"stripes",gloss:1,star:"#ffd34d"}
   };
   var STYLE_FOR={};
   (function(){
@@ -203,28 +194,53 @@ h1{font-family:var(--f-display);font-weight:900;font-size:48px;line-height:.95;m
     function rnd(){seed=(seed*1103515245+12345)%2147483648;return seed/2147483648;}
     for(var d=1;d<=31;d++){var k;do{k=keys[Math.floor(rnd()*keys.length)];}while(k===prev);STYLE_FOR[d]=k;prev=k;}
   })();
-  var STAR5='M30 30l3 6.2 6.8.8-5 4.6 1.3 6.7L30 45l-6.1 3.3 1.3-6.7-5-4.6 6.8-.8z';
-  function sparkle(x,y,r,c){return '<path d="M'+x+' '+(y-r)+'l'+(r*.3)+' '+(r*.7)+' '+(r*.7)+' '+(r*.3)+'-'+(r*.7)+' '+(r*.3)+'-'+(r*.3)+' '+(r*.7)+'-'+(r*.3)+'-'+(r*.7)+'-'+(r*.7)+'-'+(r*.3)+' '+(r*.7)+'-'+(r*.3)+'z" fill="'+c+'"/>';}
-  function ornament(open,d){
-    var st=STYLES[STYLE_FOR[d]];
-    var shadow='<ellipse cx="32" cy="77" rx="15" ry="2.6" fill="#000" opacity=".18"/>';
-    var num='<text class="num" x="30" y="67" text-anchor="middle" style="fill:'+st.num+';stroke:'+st.numS+'">'+d+'</text>';
-    var cap='<rect x="25" y="18" width="10" height="8" rx="1.5" fill="url(#'+st.cap+')"/>';
+  function spk(x,y,r,c){return '<path d="M'+x+' '+(y-r)+'l'+r*.3+' '+r*.7+' '+r*.7+' '+r*.3+'-'+r*.7+' '+r*.3+'-'+r*.3+' '+r*.7+'-'+r*.3+'-'+r*.7+'-'+r*.7+'-'+r*.3+' '+r*.7+'-'+r*.3+'z" fill="'+c+'"/>';}
+  var DECO={
+    frost:'<path d="M0 64Q8 60 15 64T30 64T45 62T60 62V80H0Z" fill="#fff" opacity=".55"/><g fill="#fff"><circle cx="12" cy="66" r=".8"/><circle cx="25" cy="68" r=".7"/><circle cx="38" cy="66" r=".8"/><circle cx="48" cy="60" r=".7"/><circle cx="20" cy="40" r=".6"/><circle cx="40" cy="36" r=".7"/></g>',
+    gloss:'<polygon points="10,30 18,30 4,80 -4,80" fill="#fff" opacity=".22"/><polygon points="22,30 25,30 11,80 8,80" fill="#fff" opacity=".15"/>',
+    glitter:(function(){var o="",pts=[[12,47,.8],[22,52,.6],[15,60,.7],[26,66,.8],[11,68,.6],[35,58,.8],[45,50,.7],[40,66,.6],[48,60,.8],[20,36,.7],[30,32,.6],[40,40,.8],[16,40,.6],[34,44,.7]];
+      pts.forEach(function(p,i){o+='<circle cx="'+p[0]+'" cy="'+p[1]+'" r="'+p[2]+'" fill="'+(i%3?"#fff":"#7a4e04")+'" opacity="'+(i%3?.95:.5)+'"/>';});return o;})(),
+    facets:'<g stroke="#ffb3ba" stroke-width=".7" opacity=".7" fill="none"><path d="M0 40L30 80M10 40L40 80M20 40L50 80M60 40L30 80M50 40L20 80M40 40L10 80M0 34L60 34M6 30L54 46M54 30L6 46"/></g><polygon points="8,45 19,50 13,58" fill="#fff" opacity=".18"/><polygon points="41,48 52,43 46,56" fill="#000" opacity=".15"/>',
+    stars:'',
+    stripes:(function(){var o='<g stroke="#e2001a" stroke-width="2.6">';for(var x=-30;x<70;x+=7)o+='<path d="M'+x+' 80L'+(x+40)+' 20"/>';return o+'</g>';})(),
+    none:''
+  };
+  DECO.stars=spk(13,52,2.2,"#f5c842")+spk(24,63,1.6,"#f5c842")+spk(14,68,1.3,"#ffe27a")+spk(37,61,1.8,"#f5c842")+spk(47,52,1.4,"#ffe27a")+spk(23,36,1.6,"#f5c842")+spk(38,34,1.4,"#ffe27a");
+  var FLAKE='<g stroke="#fff" stroke-width="1" stroke-linecap="round" opacity=".9"><path d="M13 52V60M9.5 54L16.5 58M9.5 58L16.5 54"/></g>';
+  function lidSvg(s){
+    var d=DECO[s.deco];
+    return '<polygon points="6,38 30,49 30,54 6,43" fill="'+s.L+'"/><polygon points="30,49 54,38 54,43 30,54" fill="'+s.R+'"/><polygon points="6,38 30,27 54,38 30,49" fill="'+s.T+'"/>'+
+      '<g clip-path="url(#kT)">'+d+(s.gloss?'<polygon points="6,38 30,27 54,38 30,49" fill="url(#kSheen)"/>':'')+'</g>'+
+      '<g clip-path="url(#kSL)">'+d+'</g><g clip-path="url(#kSR)">'+d+'<polygon points="30,49 54,38 54,43 30,54" fill="#000" opacity=".15"/></g>'+
+      '<polygon points="16,42.5 40,31.5 44,33.5 20,44.5" fill="'+s.rib+'"/><polygon points="20,31.5 44,42.5 40,44.5 16,33.5" fill="'+s.rib+'"/>'+
+      '<polygon points="16,43.4 20,45.2 20,50.2 16,48.4" fill="'+s.rib+'"/><polygon points="40,44.6 44,42.8 44,47.8 40,49.6" fill="'+s.ribD+'"/>'+
+      '<path d="M6 38L30 49L54 38" stroke="#fff" stroke-opacity=".35" fill="none"/>';
+  }
+  function bowSvg(s){
+    return '<ellipse cx="24" cy="33" rx="7" ry="4" fill="'+s.rib+'" stroke="'+s.ribD+'" transform="rotate(-20 24 33)"/><ellipse cx="36" cy="33" rx="7" ry="4" fill="'+s.rib+'" stroke="'+s.ribD+'" transform="rotate(20 36 33)"/>'+
+      '<path d="M28 37L24 44M32 37L36 44" stroke="'+s.ribD+'" stroke-width="2.5" stroke-linecap="round"/><circle cx="30" cy="36" r="3" fill="'+s.ribD+'"/>';
+  }
+  function bodySvg(s){
+    var d=DECO[s.deco];
+    return '<polygon points="8,43 30,53 30,74 8,64" fill="'+s.L+'"/><polygon points="30,53 52,43 52,64 30,74" fill="'+s.R+'"/>'+
+      '<g clip-path="url(#kL)">'+d+(s.deco==="frost"?FLAKE:'')+'<polygon points="8,43 30,53 30,74 8,64" fill="url(#kSheen)"'+(s.gloss?'':' opacity=".4"')+'/></g>'+
+      '<g clip-path="url(#kR)">'+d+'<polygon points="30,53 52,43 52,64 30,74" fill="#000" opacity=".18"/></g>'+
+      '<polygon points="17,47.1 21,48.9 21,69.9 17,68.1" fill="'+s.rib+'"/><polygon points="39,48.9 43,47.1 43,68.1 39,69.9" fill="'+s.ribD+'"/>'+
+      '<path d="M30 53V74" stroke="#fff" stroke-opacity=".3"/>';
+  }
+  function giftSvg(open,d){
+    var s=STYLES[STYLE_FOR[d]];
+    var o='<svg viewBox="0 0 60 90" aria-hidden="true"><ellipse cx="31" cy="76" rx="24" ry="4" fill="#000" opacity=".2"/>'+bodySvg(s);
     if(!open){
-      return '<svg viewBox="0 0 60 82" aria-hidden="true">'+shadow+
-        '<path d="M30 0V19" stroke="'+st.str+'" stroke-width="1.2"/>'+cap+
-        '<use href="#'+st.sym+'"/>'+
-        (st.spark?sparkle(49,28,4,st.spark)+sparkle(10,66,2.6,st.spark):'')+num+'</svg>';
+      o+=lidSvg(s)+bowSvg(s)+(s.spark?spk(52,26,3.5,s.spark):'');
+    } else {
+      o+='<polygon points="8,43 30,33 52,43 30,53" fill="#000" opacity=".55"/><polygon points="8,43 30,33 30,38 11,46" fill="#000" opacity=".2"/>'+
+        '<circle cx="30" cy="30" r="20" fill="url(#kGlow)"/>'+
+        '<path d="M30 15l3 6.2 6.8.8-5 4.6 1.3 6.7L30 30l-6.1 3.3 1.3-6.7-5-4.6 6.8-.8z" fill="'+s.star+'" stroke="#c8901a"/>'+
+        spk(14,22,2.6,"#ffd34d")+spk(48,16,2.6,"#ffd34d")+'<circle cx="44" cy="30" r="1.2" fill="#ffd34d"/>'+
+        '<g transform="translate(-8 -20) rotate(-16 30 40)">'+lidSvg(s)+bowSvg(s)+'</g>';
     }
-    return '<svg viewBox="0 0 60 82" aria-hidden="true">'+shadow+
-      '<circle cx="30" cy="40" r="21" fill="url(#pGlow)"/>'+
-      sparkle(12,28,3,"#ffd34d")+sparkle(50,22,3,"#ffd34d")+'<circle cx="46" cy="38" r="1.2" fill="#ffd34d"/>'+
-      '<path d="'+STAR5+'" fill="'+st.star+'" stroke="'+st.starS+'"/>'+
-      '<g clip-path="url(#pBot)"><use href="#'+st.sym+'"/></g>'+
-      '<ellipse cx="30" cy="50" rx="22" ry="3" fill="'+st.inside+'"/>'+
-      '<g transform="translate(-4 -14) rotate(-18 30 44)"><g clip-path="url(#pTop)"><use href="#'+st.sym+'"/></g>'+
-        '<ellipse cx="30" cy="46" rx="22" ry="2.6" fill="'+st.inside+'"/>'+cap+'</g>'+
-      '<path d="M30 0Q26 1 18 5" stroke="'+st.str+'" stroke-width="1.2" fill="none"/>'+num+'</svg>';
+    return o+'<text class="num" x="30" y="89" text-anchor="middle">'+d+'</text></svg>';
   }
   var grid=document.getElementById("grid");
   var lead=(dowOf(1)+6)%7; // lundi = 0
@@ -241,7 +257,7 @@ h1{font-family:var(--f-display);font-weight:900;font-size:48px;line-height:.95;m
       el.setAttribute("aria-disabled","true");
     } else {
       el.className="day orn "+STYLE_FOR[d]+(isOpen?" open":"")+(d===todayDay?" today":"");
-      el.innerHTML=ornament(isOpen,d);
+      el.innerHTML=giftSvg(isOpen,d);
       el.setAttribute("aria-label",DOWS[dowOf(d)]+" "+d+" décembre"+(isOpen?", ouverte":", fermée"));
     }
     (function(day){el.addEventListener("click",function(){openSheet(day);});})(d);
