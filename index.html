@@ -37,11 +37,9 @@ header::after{content:"";position:absolute;inset:0;pointer-events:none;
   -webkit-mask:linear-gradient(90deg,transparent 30%,#000);mask:linear-gradient(90deg,transparent 30%,#000)}
 h1{font-family:var(--f-display);font-weight:900;font-size:48px;line-height:.95;margin:0;text-transform:uppercase;text-wrap:balance;position:relative}
 .sub{font-family:var(--f-display);font-weight:700;font-size:24px;letter-spacing:.04em;text-transform:uppercase;margin-top:4px;opacity:.92;position:relative}
-.status{margin-top:14px;background:rgba(0,0,0,.2);border-radius:12px;padding:10px 12px;font-size:14px;position:relative}
-.status b{font-family:var(--f-display);font-size:24px;font-weight:900;vertical-align:-2px}
 
 .cal{display:flex;flex-direction:column;gap:6px}
-.dow,.grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}
+.dow,.grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px}
 .grid{row-gap:18px;padding-top:8px}
 .dow span{text-align:center;font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
 .blank{aspect-ratio:3/4}
@@ -85,23 +83,10 @@ h1{font-family:var(--f-display);font-weight:900;font-size:48px;line-height:.95;m
   --deco:linear-gradient(120deg,transparent 14%,rgba(255,255,255,.75) 20%,transparent 27%,transparent 58%,rgba(255,255,255,.55) 62%,transparent 67%),
          radial-gradient(circle,#fff 0 1px,transparent 1.6px) 5px 6px/11px 11px}
 /* bleu brillant : 26 → 31 */
-.gift.goodies{--c1:#7cc0ff;--c2:#1749c4;--c3:#0b2a78;--rib:#f4f7ff;--rib-d:#a9b9d8;
-  --amt:linear-gradient(180deg,#ffffff 0%,#e3eeff 40%,#9fb8e6 55%,#ffffff 100%);
-  --deco:linear-gradient(115deg,transparent 20%,rgba(255,255,255,.35) 30%,transparent 40%),
-         radial-gradient(circle,rgba(255,255,255,.75) 0 1.2px,transparent 1.7px) 4px 5px/13px 13px}
-
 /* numéro du jour : petite étiquette */
-.day .n{font-family:var(--f-display);font-weight:900;font-size:clamp(11px,3.2vw,15px);line-height:1;color:#fff;
+.day .n{font-family:var(--f-display);font-weight:900;font-size:clamp(13px,3.6vw,17px);line-height:1;color:#fff;
   position:absolute;left:5px;bottom:4px;z-index:1;text-shadow:0 1px 2px rgba(0,0,0,.55)}
 .gift.sat .n{text-shadow:0 1px 2px rgba(90,50,0,.8),0 0 3px rgba(90,50,0,.5)}
-/* montant mis en avant, brillant */
-.day .amt{font-family:var(--f-display);font-weight:900;font-size:clamp(17px,5.4vw,27px);line-height:1;white-space:nowrap;
-  margin-top:22%;position:relative;z-index:1;
-  background:var(--amt);-webkit-background-clip:text;background-clip:text;color:transparent;
-  filter:drop-shadow(0 1px 0 rgba(0,0,0,.45)) drop-shadow(0 2px 3px rgba(0,0,0,.35))}
-.gift.goodies .amt{font-size:clamp(12px,3.6vw,18px);letter-spacing:.02em}
-.gift.sat .amt{filter:drop-shadow(0 1px 0 rgba(255,255,255,.7)) drop-shadow(0 2px 2px rgba(90,50,0,.45))}
-
 /* case ouverte : le ruban est défait */
 .gift.open{background:
     linear-gradient(180deg,rgba(255,255,255,.45) 0,rgba(255,255,255,.08) 34%,rgba(255,255,255,0) 35%,rgba(0,0,0,0) 80%,rgba(0,0,0,.22) 100%),
@@ -144,13 +129,12 @@ h1{font-family:var(--f-display);font-weight:900;font-size:48px;line-height:.95;m
 .arow .sw{width:12px;height:28px;border-radius:3px;flex:none}
 .arow .sw.week{background:linear-gradient(155deg,#ff3b4e,#c2001a)}
 .arow .sw.sat{background:linear-gradient(135deg,#fff7c4,#ffd84a 30%,#c78a0e 60%,#ffe27a)}
-.arow .sw.goodies{background:linear-gradient(155deg,#7cc0ff,#1749c4)}
 .arow .lbl{flex:1;min-width:0}
 .arow .lbl b{display:block}
 .arow .lbl small{color:var(--muted);display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .pill{font-size:11px;font-weight:700;border-radius:999px;padding:3px 8px;white-space:nowrap;flex:none}
 .pill.ok{background:color-mix(in srgb,#1f8a3a 18%,transparent);color:#1f8a3a}
-.pill.todo{background:var(--off);color:var(--muted)}
+.pill.todo{background:var(--off);color:var(--muted);text-decoration:line-through;text-decoration-thickness:1px}
 .field{display:flex;flex-direction:column;gap:4px;margin-bottom:10px}
 .field label{font-size:13px;font-weight:700}
 .field input,.field textarea{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px;width:100%}
@@ -160,6 +144,9 @@ h1{font-family:var(--f-display);font-weight:900;font-size:48px;line-height:.95;m
 .btns{display:flex;gap:8px}
 .btns .close{margin-top:10px}
 .close.alt{background:var(--off);color:var(--ink)}
+.pair{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:0 10px}
+.pair .field{min-width:0}
+.pills{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:4px;max-width:46%}
 .ghbox{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px}
 .ghbox .btns .close{margin-top:0;padding:11px}
 .ghbox .hint{margin-top:8px}
@@ -186,9 +173,8 @@ h1{font-family:var(--f-display);font-weight:900;font-size:48px;line-height:.95;m
 .prizes{display:flex;flex-direction:column;gap:8px}
 .prize{display:flex;justify-content:space-between;align-items:center;gap:12px;border:1px solid var(--line);border-radius:12px;padding:12px 14px}
 .prize .who{font-weight:600}
-.prize .amt{font-family:var(--f-display);font-weight:900;font-size:28px;color:var(--red);white-space:nowrap}
+.prize .amt{font-family:var(--f-display);font-weight:900;font-size:28px;line-height:1.05;color:var(--red);text-align:right;overflow-wrap:anywhere;min-width:0}
 .prize.s .amt{color:var(--gold)}
-.prize.g .amt{color:var(--blue)}
 .sheet p{color:var(--muted);margin:12px 0 0}
 .close{margin-top:18px;width:100%;border:0;border-radius:12px;padding:14px;font:inherit;font-weight:700;background:var(--red);color:#fff;cursor:pointer}
 .close:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
@@ -202,7 +188,6 @@ h1{font-family:var(--f-display);font-weight:900;font-size:48px;line-height:.95;m
   <header>
     <h1>Challenge OUEST 1</h1>
     <div class="sub">Décembre 2026</div>
-    <div class="status" id="status" hidden></div>
   </header>
 
   <div class="sim" id="sim" hidden>
@@ -212,13 +197,13 @@ h1{font-family:var(--f-display);font-weight:900;font-size:48px;line-height:.95;m
   </div>
 
   <section class="cal" aria-label="Calendrier de décembre 2026">
-    <div class="dow" aria-hidden="true"><span>Lun</span><span>Mar</span><span>Mer</span><span>Jeu</span><span>Ven</span><span>Sam</span><span>Dim</span></div>
+    <div class="dow" aria-hidden="true"><span>Lun</span><span>Mar</span><span>Mer</span><span>Jeu</span><span>Ven</span><span>Sam</span></div>
     <div class="grid" id="grid"></div>
   </section>
 
   <section class="admin" id="admin" hidden aria-labelledby="adminTitle">
     <h2 id="adminTitle">Administration</h2>
-    <p class="hint">Touchez un jour pour écrire son challenge ou ses gagnants. Chaque enregistrement est publié sur le site et visible par tous d'ici 1 à 2 minutes.</p>
+    <p class="hint">Touchez un jour pour écrire son challenge, ses gains et ses gagnants. Chaque enregistrement est publié sur le site et visible par tous d'ici 1 à 2 minutes.</p>
     <div class="ghbox">
       <div class="field"><label for="f-token">Clé GitHub</label>
         <input id="f-token" type="password" autocomplete="off" placeholder="github_pat_…"></div>
@@ -242,11 +227,9 @@ h1{font-family:var(--f-display);font-weight:900;font-size:48px;line-height:.95;m
   function dowOf(d){return (2+(d-1))%7;} // 1er décembre 2026 = mardi ; 0 = dimanche
   function gain(d){
     var w=dowOf(d);
-    if(d===25) return {type:"none",label:"Noël",why:"Pas de case le jour de Noël."};
-    if(w===0) return {type:"none",label:"Dim.",why:"Pas de case le dimanche."};
-    if(d>=26) return {type:"goodies",tag:"Goodies",prizes:[{who:"Gain du jour",amt:"Goodies",c:"g"}]};
-    if(w===6) return {type:"sat",tag:"60 €",prizes:[{who:"Magasin",amt:"30 €",c:"s"},{who:"Vendeur",amt:"30 €",c:"s"}]};
-    return {type:"week",tag:"20 €",prizes:[{who:"Magasin",amt:"20 €",c:""}]};
+    if(d===25) return {type:"none"};
+    if(w===0) return {type:"none"};
+    return {type:w===6?"sat":"week"};
   }
   function parisToday(){
     var p=new Intl.DateTimeFormat("fr-FR",{timeZone:"Europe/Paris",year:"numeric",month:"2-digit",day:"2-digit"}).formatToParts(new Date());
@@ -262,15 +245,6 @@ h1{font-family:var(--f-display);font-weight:900;font-size:48px;line-height:.95;m
   else if(t.year===2026&&t.month===12){openUpTo=t.day;todayDay=t.day;}
   else openUpTo=31;
 
-  var st=document.getElementById("status");
-  if(preview){st.innerHTML="<b>Aperçu</b> &nbsp;toutes les cases sont ouvertes";st.hidden=false;}
-  else if(todayDay){
-    var g0=gain(todayDay);
-    st.innerHTML= g0.type==="none" ? "Aujourd'hui : pas de case. Rendez-vous demain !"
-      : "Case du jour : <b>"+todayDay+"</b> &nbsp;à remporter : "+g0.prizes.map(function(p){return p.amt+" ("+p.who.toLowerCase()+")";}).join(" + ");
-    st.hidden=false;
-  }
-
   var TREE='<svg viewBox="0 0 60 80" aria-hidden="true">'+
     '<path d="M30 3l3 6 6 1-4.5 4 1 6-5.5-3-5.5 3 1-6L21 10l6-1z" fill="#ffd34d" stroke="#c8951f" stroke-width="1"/>'+
     '<path d="M30 16L44 34H37L50 52H41L55 68H5L19 52H10L23 34H16Z" fill="#1f8a3a"/>'+
@@ -282,25 +256,23 @@ h1{font-family:var(--f-display);font-weight:900;font-size:48px;line-height:.95;m
     '<circle cx="19" cy="63" r="2.4" fill="#4aa3ff"/><circle cx="31" cy="56" r="2.2" fill="#fff"/>'+
     '</svg>';
   var grid=document.getElementById("grid");
-  var lead=(dowOf(1)+6)%7;
+  var lead=(dowOf(1)+6)%7; // lundi = 0
   for(var i=0;i<lead;i++){var b=document.createElement("div");b.className="blank";grid.appendChild(b);}
   for(var d=1;d<=31;d++){
+    if(dowOf(d)===0) continue; // pas de colonne dimanche
     var g=gain(d), el=document.createElement("button");
-    el.type="button";el.id="day-"+d;el.style.setProperty("--i",d);
+    el.type="button";el.id="day-"+d;
     var isOpen=d<=openUpTo;
     if(d===25){
       el.className="day tree";
       el.innerHTML=TREE;
-    } else if(g.type==="none"){
-      el.className="day none";
-      el.innerHTML='<span class="n">'+d+'</span><span class="t">'+g.label+'</span>';
+      el.setAttribute("aria-label","vendredi 25 décembre, Noël, pas de case");
+      el.setAttribute("aria-disabled","true");
     } else {
       el.className="day gift "+g.type+(isOpen?" open":"")+(d===todayDay?" today":"");
-      el.innerHTML='<span class="n">'+d+'</span><span class="amt">'+g.tag+'</span>';
+      el.innerHTML='<span class="n">'+d+'</span>';
+      el.setAttribute("aria-label",DOWS[dowOf(d)]+" "+d+" décembre"+(isOpen?", ouverte":", fermée"));
     }
-    el.setAttribute("aria-label",DOWS[dowOf(d)]+" "+d+" décembre"+(g.type==="none"?", pas de case":(isOpen?", ouverte":", fermée")));
-    if(g.type==="none") el.setAttribute("aria-disabled","true");
-    if(d===25) el.setAttribute("aria-label","vendredi 25 décembre, Noël, pas de case");
     (function(day){el.addEventListener("click",function(){openSheet(day);});})(d);
     grid.appendChild(el);
   }
@@ -309,7 +281,9 @@ h1{font-family:var(--f-display);font-weight:900;font-size:48px;line-height:.95;m
   function esc(x){return String(x==null?"":x).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
   function pad(d){return (d<10?"0":"")+d;}
   function info(d){return DATA["d"+pad(d)]||{};}
-  function hasWinner(d){var x=info(d);return !!((x.magasin||"").trim()||(x.vendeur||"").trim()||(x.gagnants||"").trim());}
+  function filled(v){return !!(v||"").trim();}
+  function hasWinner(d){var x=info(d);return filled(x.magasin)||filled(x.vendeur);}
+  function hasGain(d){var x=info(d);return filled(x.gainMagasin)||filled(x.gainVendeur);}
   function showSheet(html,focusId){
     sheet.innerHTML=html; sheet.hidden=false; scrim.hidden=false;
     var c=document.getElementById(focusId||"closeBtn"); if(c) c.focus();
@@ -323,19 +297,19 @@ h1{font-family:var(--f-display);font-weight:900;font-size:48px;line-height:.95;m
     if(d>openUpTo){
       body='<div class="big" id="sheetTitle">Case '+d+'</div><div class="lockmsg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><strong>Pas encore !</strong><span style="color:var(--muted)">Ce cadeau s\'ouvre le '+d+' décembre.</span></div>';
     } else {
-      body='<div class="big" id="sheetTitle">'+(g.type==="goodies"?"Goodies à gagner":"Gain du jour")+'</div>'+
-        ((x.challenge||"").trim()?'<div class="defi"><span class="k">Challenge du jour</span>'+esc(x.challenge)+'</div>':'')+
-        '<div class="prizes">'+
-        g.prizes.map(function(p){return '<div class="prize '+p.c+'"><span class="who">'+p.who+'</span><span class="amt">'+p.amt+'</span></div>';}).join("")+'</div>';
+      var prizes=[];
+      if(filled(x.gainMagasin)) prizes.push(["Magasin",x.gainMagasin]);
+      if(filled(x.gainVendeur)) prizes.push(["Vendeur",x.gainVendeur]);
+      body='<div class="big" id="sheetTitle">Case '+d+'</div>'+
+        (filled(x.challenge)?'<div class="defi"><span class="k">Challenge du jour</span>'+esc(x.challenge)+'</div>':'')+
+        (prizes.length?'<div class="prizes">'+prizes.map(function(p){return '<div class="prize'+(g.type==="sat"?" s":"")+'"><span class="who">'+p[0]+'</span><span class="amt">'+esc(p[1])+'</span></div>';}).join("")+'</div>':'');
       if(hasWinner(d)){
         var rows=[];
-        if(g.type==="goodies"){ if((x.gagnants||"").trim()) rows.push(["Gagnants",x.gagnants]); }
-        else {
-          if((x.magasin||"").trim()) rows.push(["Magasin",x.magasin]);
-          if(g.type==="sat"&&(x.vendeur||"").trim()) rows.push(["Vendeur",x.vendeur]);
-        }
+        if(filled(x.magasin)) rows.push(["Magasin",x.magasin]);
+        if(filled(x.vendeur)) rows.push(["Vendeur",x.vendeur]);
         body+='<div class="winners"><span class="k">Gagnants</span>'+rows.map(function(r){return '<div class="row"><span>'+r[0]+'</span><span>'+esc(r[1])+'</span></div>';}).join("")+'</div>';
       }
+      if(!filled(x.challenge)&&!prizes.length&&!hasWinner(d)) body+='<p>Les détails de ce jour arrivent bientôt.</p>';
     }
     showSheet(head+body+'<button class="close" id="closeBtn" type="button">Fermer</button>');
   }
@@ -371,15 +345,16 @@ h1{font-family:var(--f-display);font-weight:900;font-size:48px;line-height:.95;m
     .then(function(j){DATA=(j&&j.jours)||{};markWinners();renderAdmin();}).catch(function(){});
 
   function giftDays(){var r=[];for(var d=1;d<=31;d++){if(gain(d).type!=="none")r.push(d);}return r;}
-  var TYPE_NAME={week:"20 € magasin",sat:"30 € magasin + 30 € vendeur",goodies:"Goodies"};
   function renderAdmin(){
     var list=document.getElementById("alist"); if(document.getElementById("admin").hidden) return;
     list.innerHTML=giftDays().map(function(d){
-      var g=gain(d), x=info(d), hasC=!!(x.challenge||"").trim(), hasW=hasWinner(d);
+      var g=gain(d), x=info(d), hasC=filled(x.challenge), hasG=hasGain(d), hasW=hasWinner(d);
+      var sub=hasC?esc(x.challenge):"À compléter";
       return '<button type="button" class="arow" data-d="'+d+'"><span class="sw '+g.type+'"></span>'+
-        '<span class="lbl"><b>'+DOWS[dowOf(d)]+' '+d+' déc.</b><small>'+(hasC?esc(x.challenge):TYPE_NAME[g.type])+'</small></span>'+
-        '<span class="pill '+(hasC?"ok":"todo")+'">'+(hasC?"Challenge ✓":"Challenge")+'</span>'+
-        '<span class="pill '+(hasW?"ok":"todo")+'">'+(hasW?"Gagnant ✓":"Gagnant")+'</span></button>';
+        '<span class="lbl"><b>'+DOWS[dowOf(d)]+' '+d+' déc.</b><small>'+sub+'</small></span>'+
+        '<span class="pills"><span class="pill '+(hasC?"ok":"todo")+'">Challenge</span>'+
+        '<span class="pill '+(hasG?"ok":"todo")+'">Gain</span>'+
+        '<span class="pill '+(hasW?"ok":"todo")+'">Gagnant</span></span></button>';
     }).join("");
     var gi=document.getElementById("ghInfo");
     gi.textContent=(GITHUB.owner&&GITHUB.repo?"Dépôt : "+GITHUB.owner+"/"+GITHUB.repo+". ":"Dépôt GitHub non détecté : ouvrez le site depuis son adresse github.io. ")+
@@ -419,22 +394,20 @@ h1{font-family:var(--f-display);font-weight:900;font-size:48px;line-height:.95;m
 
   function openEditor(d,from){
     var g=gain(d), x=info(d); lastBtn=from;
-    var f='<div class="d">'+DOWS[dowOf(d)]+' '+d+' décembre 2026 · '+TYPE_NAME[g.type]+'</div>'+
+    var f='<div class="d">'+DOWS[dowOf(d)]+' '+d+' décembre 2026</div>'+
       '<div class="big" id="sheetTitle">Modifier le jour '+d+'</div>'+
-      '<form id="edForm"><div class="field"><label for="f-challenge">Challenge du jour</label><textarea id="f-challenge" placeholder="Ex. : 3 forfaits 5G vendus dans la journée">'+esc(x.challenge)+'</textarea></div>';
-    if(g.type==="goodies"){
-      f+='<div class="field"><label for="f-gagnants">Gagnants</label><textarea id="f-gagnants" placeholder="Un gagnant par ligne">'+esc(x.gagnants)+'</textarea></div>';
-    } else {
-      f+='<div class="field"><label for="f-magasin">Magasin gagnant</label><input id="f-magasin" type="text" value="'+esc(x.magasin)+'" placeholder="Nom du magasin"></div>';
-      if(g.type==="sat") f+='<div class="field"><label for="f-vendeur">Vendeur gagnant</label><input id="f-vendeur" type="text" value="'+esc(x.vendeur)+'" placeholder="Prénom et nom"></div>';
-    }
+      '<form id="edForm"><div class="field"><label for="f-challenge">Challenge du jour</label><textarea id="f-challenge" placeholder="Ex. : 3 forfaits 5G vendus dans la journée">'+esc(x.challenge)+'</textarea></div>'+
+      '<div class="pair"><div class="field"><label for="f-gainMagasin">Gain magasin</label><input id="f-gainMagasin" type="text" value="'+esc(x.gainMagasin)+'" placeholder="Ex. : 20 €"></div>'+
+      '<div class="field"><label for="f-gainVendeur">Gain vendeur</label><input id="f-gainVendeur" type="text" value="'+esc(x.gainVendeur)+'" placeholder="Ex. : 30 €"></div></div>'+
+      '<div class="pair"><div class="field"><label for="f-magasin">Magasin gagnant</label><input id="f-magasin" type="text" value="'+esc(x.magasin)+'" placeholder="Nom du magasin"></div>'+
+      '<div class="field"><label for="f-vendeur">Vendeur gagnant</label><input id="f-vendeur" type="text" value="'+esc(x.vendeur)+'" placeholder="Prénom et nom"></div></div>';
     f+='<div class="msg" id="edMsg" role="status"></div><div class="btns"><button type="button" class="close alt" id="closeBtn">Annuler</button><button type="submit" class="close" id="saveBtn">Enregistrer</button></div></form>';
     showSheet(f,"f-challenge");
     document.getElementById("edForm").addEventListener("submit",function(e){
       e.preventDefault();
       var val=function(id){var el=document.getElementById(id);return el?el.value.trim():"";};
       var key="d"+pad(d), before=DATA[key];
-      DATA[key]={challenge:val("f-challenge"),magasin:val("f-magasin"),vendeur:val("f-vendeur"),gagnants:val("f-gagnants")};
+      DATA[key]={challenge:val("f-challenge"),gainMagasin:val("f-gainMagasin"),gainVendeur:val("f-gainVendeur"),magasin:val("f-magasin"),vendeur:val("f-vendeur")};
       var msg=document.getElementById("edMsg"), btn=document.getElementById("saveBtn");
       btn.disabled=true; msg.className="msg"; msg.textContent="Publication sur le site…";
       publish("Jour "+d+" mis à jour").then(function(){
