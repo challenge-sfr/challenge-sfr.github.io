@@ -51,66 +51,14 @@ h1{font-family:var(--f-display);font-weight:900;font-size:48px;line-height:.95;m
 .day:active{transform:scale(.94)}
 .day:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
 
-.gift{
-  --rw:5px;
-  background:
-    linear-gradient(180deg,rgba(255,255,255,.5) 0,rgba(255,255,255,.08) 34%,rgba(255,255,255,0) 35%,rgba(0,0,0,0) 80%,rgba(0,0,0,.22) 100%),
-    linear-gradient(90deg,transparent calc(50% - var(--rw)),var(--rib-d) calc(50% - var(--rw)),var(--rib) calc(50% - 1px),var(--rib-d) calc(50% + var(--rw)),transparent calc(50% + var(--rw))),
-    linear-gradient(180deg,transparent 30%,rgba(0,0,0,.28) 30% calc(30% + 2px),transparent calc(30% + 2px)),
-    linear-gradient(180deg,transparent calc(30% - 7px),var(--rib) calc(30% - 7px) calc(30% - 1px),transparent calc(30% - 1px)),
-    var(--deco,none),
-    var(--base,linear-gradient(155deg,var(--c1),var(--c2)));
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.6),inset 0 -3px 0 rgba(0,0,0,.18),inset 2px 0 0 rgba(255,255,255,.15),
-    0 4px 0 var(--c3),0 7px 12px rgba(40,0,8,.28);
-}
-/* nœud */
-.gift::before{content:"";position:absolute;left:50%;top:-9px;width:30px;height:18px;transform:translateX(-50%);
-  background:
-    radial-gradient(circle at 50% 70%,var(--rib-d) 0 3px,transparent 3.5px),
-    radial-gradient(40% 46% at 27% 52%,var(--rib) 0 55%,var(--rib-d) 90%,transparent 100%),
-    radial-gradient(40% 46% at 73% 52%,var(--rib) 0 55%,var(--rib-d) 90%,transparent 100%);
-  filter:drop-shadow(0 1px 1px rgba(0,0,0,.3));z-index:2}
-
-/* rouge : lun → ven, déco flocons */
-.gift.week{--c1:#ff3b4e;--c2:#c2001a;--c3:#82000f;--rib:#ffd76a;--rib-d:#c8951f;
-  --amt:linear-gradient(180deg,#fffbe6 0%,#ffe27a 35%,#e0a420 55%,#fff1a8 75%,#c8891a 100%);
-  --deco:radial-gradient(circle,rgba(255,255,255,.55) 0 1.3px,transparent 1.8px) 3px 4px/14px 14px,
-         radial-gradient(circle,rgba(255,255,255,.3) 0 1px,transparent 1.4px) 10px 11px/14px 14px}
-/* doré métallique : samedi */
-.gift.sat{--c3:#7a4e04;--rib:#e2001a;--rib-d:#9b0012;
-  --base:linear-gradient(135deg,#fff7c4 0%,#ffd84a 18%,#c78a0e 38%,#fff0a0 52%,#e6b12c 66%,#a86f06 84%,#ffe27a 100%);
-  --amt:linear-gradient(180deg,#ff4d5e 0%,#d0001a 45%,#8f0012 55%,#e2001a 100%);
-  --deco:linear-gradient(120deg,transparent 14%,rgba(255,255,255,.75) 20%,transparent 27%,transparent 58%,rgba(255,255,255,.55) 62%,transparent 67%),
-         radial-gradient(circle,#fff 0 1px,transparent 1.6px) 5px 6px/11px 11px}
-/* bleu brillant : 26 → 31 */
-/* numéro du jour : petite étiquette */
-.day .n{font-family:var(--f-display);font-weight:900;font-size:clamp(13px,3.6vw,17px);line-height:1;color:#fff;
-  position:absolute;left:5px;bottom:4px;z-index:1;text-shadow:0 1px 2px rgba(0,0,0,.55)}
-.gift.sat .n{text-shadow:0 1px 2px rgba(90,50,0,.8),0 0 3px rgba(90,50,0,.5)}
-/* case ouverte : couvercle soulevé, intérieur visible, éclats dorés */
-.gift.open{
-  background:
-    radial-gradient(44% 7% at 50% 29%,rgba(45,0,8,.8) 0 55%,rgba(45,0,8,0) 100%),
-    linear-gradient(180deg,rgba(255,255,255,.35) 0,rgba(255,255,255,0) 30%,rgba(0,0,0,0) 75%,rgba(0,0,0,.22) 100%) 0 100%/100% 72% no-repeat,
-    var(--base,linear-gradient(155deg,var(--c1),var(--c2))) 0 100%/100% 72% no-repeat;
-  box-shadow:none;
-  filter:drop-shadow(0 4px 0 var(--c3)) drop-shadow(0 6px 6px rgba(40,0,8,.28))}
-.gift.open::before{left:-8%;top:1%;width:116%;height:19%;transform:rotate(-17deg);transform-origin:15% 100%;border-radius:5px;
-  background:
-    linear-gradient(180deg,rgba(255,255,255,.55),rgba(255,255,255,0) 55%,rgba(0,0,0,.22)),
-    linear-gradient(90deg,transparent calc(50% - 5px),var(--rib) calc(50% - 5px) calc(50% + 5px),transparent calc(50% + 5px)),
-    var(--base,linear-gradient(155deg,var(--c1),var(--c2)));
-  filter:drop-shadow(0 2px 2px rgba(0,0,0,.35));z-index:2}
-.gift.open::after{content:"";position:absolute;left:0;top:8%;width:100%;height:24%;pointer-events:none;z-index:1;
-  background:
-    radial-gradient(circle at 28% 72%,#ffe27a 0 2px,transparent 2.6px),
-    radial-gradient(circle at 63% 38%,#fff 0 1.5px,transparent 2px),
-    radial-gradient(circle at 76% 78%,#ffd34d 0 2px,transparent 2.6px),
-    radial-gradient(circle at 46% 16%,#ffe27a 0 1.4px,transparent 2px),
-    radial-gradient(55% 70% at 50% 100%,rgba(255,215,110,.6),rgba(255,215,110,0) 70%)}
+/* ---------- Boules de sapin ---------- */
+.day.orn{background:none;filter:drop-shadow(0 4px 5px rgba(60,0,10,.25))}
+.day.orn svg{width:100%;height:100%;overflow:visible;display:block}
+.day.orn .num{font-family:var(--f-display);font-weight:900;font-size:15px;fill:#fff;paint-order:stroke;stroke:rgba(0,0,0,.35);stroke-width:2px}
+.day.orn.sat .num{fill:#7a1000;stroke:rgba(255,255,255,.5)}
 
 .day.today{animation:bob 1.8s ease-in-out infinite}
-.day.today{outline:3px solid var(--gold);outline-offset:3px}
+.day.today{outline:3px solid var(--gold);outline-offset:3px;border-radius:12px}
 @keyframes bob{50%{transform:translateY(-4px) rotate(-2deg)}}
 
 /* dimanches : grisés */
@@ -130,7 +78,7 @@ h1{font-family:var(--f-display);font-weight:900;font-size:48px;line-height:.95;m
 .winners{margin-top:12px;border:2px solid var(--gold);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:6px}
 .winners .row{display:flex;justify-content:space-between;gap:10px}
 .winners .row span:last-child{font-weight:700;text-align:right;overflow-wrap:anywhere;min-width:0;white-space:pre-wrap}
-.gift .won{position:absolute;right:4px;bottom:3px;z-index:1;width:14px;height:14px;filter:drop-shadow(0 1px 1px rgba(0,0,0,.5))}
+.orn .won{position:absolute;right:0;bottom:0;width:16px;height:16px}
 
 .foot{font-size:12px;color:var(--muted);text-align:center}
 .sim{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--surface);border:2px dashed var(--line);border-radius:14px;padding:10px 12px}
@@ -184,6 +132,15 @@ h1{font-family:var(--f-display);font-weight:900;font-size:48px;line-height:.95;m
   <div class="foot" id="foot"></div>
 </div>
 
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+  <radialGradient id="ballR" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#ff6a78"/><stop offset=".45" stop-color="#d4001a"/><stop offset="1" stop-color="#7a000e"/></radialGradient>
+  <radialGradient id="ballG" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#fff8d0"/><stop offset=".4" stop-color="#f2c23e"/><stop offset="1" stop-color="#9a6404"/></radialGradient>
+  <radialGradient id="glow"><stop offset="0" stop-color="#fff2b0" stop-opacity=".95"/><stop offset="1" stop-color="#ffd34d" stop-opacity="0"/></radialGradient>
+  <clipPath id="clipBall"><circle cx="30" cy="48" r="22"/></clipPath>
+  <clipPath id="clipBottom"><path d="M8 50A22 22 0 0 0 52 50Z"/></clipPath>
+  <clipPath id="clipTop"><path d="M8 46A22 22 0 0 1 52 46Z"/></clipPath>
+</defs></svg>
+
 <div class="scrim" id="scrim" hidden></div>
 <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle" hidden></div>
 
@@ -221,6 +178,39 @@ h1{font-family:var(--f-display);font-weight:900;font-size:48px;line-height:.95;m
     '<circle cx="22" cy="48" r="2.4" fill="#ffd34d"/><circle cx="40" cy="61" r="2.6" fill="#e2001a"/>'+
     '<circle cx="19" cy="63" r="2.4" fill="#4aa3ff"/><circle cx="31" cy="56" r="2.2" fill="#fff"/>'+
     '</svg>';
+  /* Boule de sapin : fermée avant le jour, ouverte avec une étoile ensuite */
+  function ornament(type,open,d){
+    var gold=type==="sat";
+    var fill=gold?"url(#ballG)":"url(#ballR)", band=gold?"#e2001a":"#f5c842",
+        cap=gold?"#c8901a":"#f5c842", inside=gold?"#5a3a00":"#3d0008", dots=gold?"#fff":"#fff";
+    var bands='<rect x="0" y="42" width="60" height="3" fill="'+band+'"/><rect x="0" y="51" width="60" height="3" fill="'+band+'"/>'+
+      '<g fill="'+dots+'" opacity=".9"><circle cx="17" cy="48" r="1.4"/><circle cx="30" cy="48" r="1.4"/><circle cx="43" cy="48" r="1.4"/></g>';
+    var shine='<ellipse cx="21" cy="37" rx="6" ry="3.2" fill="#fff" opacity=".45" transform="rotate(-35 21 37)"/>';
+    if(!open){
+      return '<svg viewBox="0 0 60 80" aria-hidden="true">'+
+        '<path d="M30 0V19" stroke="#c8901a" stroke-width="1.2"/>'+
+        '<circle cx="30" cy="17" r="2.6" fill="none" stroke="'+cap+'" stroke-width="1.4"/>'+
+        '<rect x="25" y="19" width="10" height="7" rx="1.5" fill="'+cap+'"/>'+
+        '<circle cx="30" cy="48" r="22" fill="'+fill+'"/>'+
+        '<g clip-path="url(#clipBall)">'+bands+'</g>'+shine+
+        '<text class="num" x="30" y="67" text-anchor="middle">'+d+'</text></svg>';
+    }
+    return '<svg viewBox="0 0 60 80" aria-hidden="true">'+
+      '<path d="M30 0Q26 1 18 5" stroke="#c8901a" stroke-width="1.2" fill="none"/>'+
+      '<circle cx="30" cy="40" r="20" fill="url(#glow)"/>'+
+      '<path d="M30 30l3 6.2 6.8.8-5 4.6 1.3 6.7L30 45l-6.1 3.3 1.3-6.7-5-4.6 6.8-.8z" fill="#ffd34d" stroke="#c8901a" stroke-width="1"/>'+
+      '<g fill="#ffd34d"><circle cx="11" cy="31" r="1.5"/><circle cx="50" cy="27" r="1.8"/><circle cx="47" cy="40" r="1.2"/><circle cx="14" cy="42" r="1"/></g>'+
+      '<path d="M8 50A22 22 0 0 0 52 50Z" fill="'+fill+'"/>'+
+      '<g clip-path="url(#clipBottom)">'+bands+'</g>'+
+      '<ellipse cx="30" cy="50" rx="22" ry="3" fill="'+inside+'"/>'+
+      '<g transform="translate(-4 -14) rotate(-18 30 44)">'+
+        '<path d="M8 46A22 22 0 0 1 52 46Z" fill="'+fill+'"/>'+
+        '<g clip-path="url(#clipTop)">'+bands+'</g>'+
+        '<ellipse cx="30" cy="46" rx="22" ry="2.6" fill="'+inside+'"/>'+shine+
+        '<rect x="25" y="19" width="10" height="7" rx="1.5" fill="'+cap+'"/>'+
+      '</g>'+
+      '<text class="num" x="30" y="67" text-anchor="middle">'+d+'</text></svg>';
+  }
   var grid=document.getElementById("grid");
   var lead=(dowOf(1)+6)%7; // lundi = 0
   for(var i=0;i<lead;i++){var b=document.createElement("div");b.className="blank";grid.appendChild(b);}
@@ -235,8 +225,8 @@ h1{font-family:var(--f-display);font-weight:900;font-size:48px;line-height:.95;m
       el.setAttribute("aria-label","vendredi 25 décembre, Noël, pas de case");
       el.setAttribute("aria-disabled","true");
     } else {
-      el.className="day gift "+g.type+(isOpen?" open":"")+(d===todayDay?" today":"");
-      el.innerHTML='<span class="n">'+d+'</span>';
+      el.className="day orn "+g.type+(isOpen?" open":"")+(d===todayDay?" today":"");
+      el.innerHTML=ornament(g.type,isOpen,d);
       el.setAttribute("aria-label",DOWS[dowOf(d)]+" "+d+" décembre"+(isOpen?", ouverte":", fermée"));
     }
     (function(day){el.addEventListener("click",function(){openSheet(day);});})(d);
@@ -285,10 +275,10 @@ h1{font-family:var(--f-display);font-weight:900;font-size:48px;line-height:.95;m
 
   /* ---------- Données publiées (data.json) ---------- */
   var DATA={};
-  var STAR='<svg class="won" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.6 1.5 6.8L12 17l-6.1 3.4 1.5-6.8L2.2 9l6.9-.7z" fill="#fff"/></svg>';
+  var STAR='<svg class="won" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.6 1.5 6.8L12 17l-6.1 3.4 1.5-6.8L2.2 9l6.9-.7z" fill="#ffd34d" stroke="#9a6404" stroke-width="1.5"/></svg>';
   function markWinners(){
     for(var d=1;d<=31;d++){
-      var el=document.getElementById("day-"+d); if(!el||el.className.indexOf("gift")<0) continue;
+      var el=document.getElementById("day-"+d); if(!el||el.className.indexOf("orn")<0) continue;
       var old=el.querySelector(".won"); if(old) old.remove();
       if(d<=openUpTo&&hasWinner(d)) el.insertAdjacentHTML("beforeend",STAR);
     }
