@@ -1,1 +1,11 @@
-
+{
+  "jours": {
+    "d01": {
+      "challenge": "Meilleur R/O abo",
+      "gainMagasin": "20",
+      "gainVendeur": "",
+      "magasin": "",
+      "vendeur": ""
+    }
+  }
+}
