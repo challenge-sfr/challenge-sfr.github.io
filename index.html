@@ -6,6 +6,15 @@
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>Challenge OUEST 1</title>
 <meta name="claude:viewport-fit-sides" content="cover">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#98cff6">
+<meta name="description" content="Calendrier de l'Avent du Challenge OUEST 1 - décembre 2026">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="OUEST 1">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Playfair+Display:ital,wght@0,800;0,900;1,700&family=Figtree:wght@400;600;700&display=swap">
 <style>
@@ -200,7 +209,7 @@ h1{font-family:"Playfair Display",Georgia,serif;font-weight:900;font-size:clamp(
   <div class="actions">
       <button type="button" class="histbtn" id="calBtn" aria-expanded="false" aria-controls="cal">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1l2.4 6.6L21 8.5l-5.2 4.3 1.8 6.7L12 15.8l-5.6 3.7 1.8-6.7L3 8.5l6.6-.9z" fill="#f5c842" stroke="#fff6c4" stroke-width=".8"/></svg>
-        Calendrier de l'Avent
+        Ouvrir le calendrier de l'Avent
       </button>
   <section class="hist" aria-label="Historique des gains">
     <button type="button" class="histbtn" id="histBtn" aria-expanded="false" aria-controls="hlist">
@@ -213,7 +222,7 @@ h1{font-family:"Playfair Display",Georgia,serif;font-weight:900;font-size:clamp(
   </div>
 
   <div class="foot" id="foot"></div>
-  <div class="sign">L.M.</div>
+  <div class="sign">Lambert</div>
 </div>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
@@ -467,6 +476,15 @@ h1{font-family:"Playfair Display",Georgia,serif;font-weight:900;font-size:clamp(
   if(sim) foot.textContent="Mode simulation actif. Retirez #jour-"+sim+" de l'adresse pour revenir au mode normal.";
   else if(preview) foot.textContent="Mode aperçu actif. Retirez #apercu de l'adresse pour revenir au mode normal.";
   else foot.hidden=true;
+})();
+</script>
+<script>
+/* Application installable (PWA) : active le fonctionnement hors ligne quand le site est en ligne en https */
+(function(){
+  if(!("serviceWorker" in navigator)||location.protocol!=="https:") return;
+  window.addEventListener("load",function(){
+    try{ navigator.serviceWorker.register("sw.js").catch(function(){}); }catch(e){}
+  });
 })();
 </script>
 </body>
